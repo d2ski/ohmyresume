@@ -1,0 +1,25 @@
+<main [tuiMode]="'onDark'">
+  <section class="select-template">
+    <div class="content">
+      <h1 class="tui-text_h3">Выберите вид своего будущего резюме</h1>
+      <div class="description tui-text_body-xl tui-space_vertical-4">
+        Вы сможете изменить шаблон в дальнейшем.
+      </div>
+    </div>
+    <div class="templates">
+      @for (template of selectTemplates; track $index) {
+
+      <a [routerLink]="['/cv/edit']" tuiLink>
+        <tui-island class="item">
+          <p class="tui-island__paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </tui-island>
+        <h2 class="tui-text_body-m">{{ template.title }}</h2>
+      </a>
+
+      }
+    </div>
+  </section>
+</main>

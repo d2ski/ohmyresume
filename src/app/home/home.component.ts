@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TuiButtonModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiModeModule } from '@taiga-ui/core';
 import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, TuiButtonModule, RouterLink],
+  imports: [CommonModule, TuiButtonModule, RouterLink, TuiModeModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

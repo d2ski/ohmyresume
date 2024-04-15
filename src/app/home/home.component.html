@@ -1,23 +1,16 @@
-<main class="main">
+<main class="main" [tuiMode]="'onDark'">
   <section class="hero tui-space_vertical-5">
     <div class="content">
-      <h1 class="tui-text_h2">Создайте своё идеальное резюме</h1>
-      <div class="description tui-text_body-xl tui-space_vertical-4">
-        Используя наши стильные шаблоны. Абсолютно бесплатно.
+      <h1 class="main-header">Создайте своё идеальное резюме</h1>
+      <div class="description">
+        Используйте наши стильные шаблоны. Абсолютно бесплатно.
       </div>
-      <div class="privacy-note tui-text_body-m tui-space_vertical-3">
+      <div class="privacy-note">
         Ваши данные остаются Вашими. Мы не сохраняем никакой информации о Вас.
       </div>
-      <a
-        appearance="accent"
-        tuiButton
-        size="l"
-        type="button"
-        class="tui-space_vertical-4"
-        [routerLink]="['cv/edit']"
-      >
-        Составить резюме
-      </a>
+    </div>
+    <div class="create-cv">
+      <a [routerLink]="['templates']"> Составить резюме </a>
     </div>
   </section>
 </main>
