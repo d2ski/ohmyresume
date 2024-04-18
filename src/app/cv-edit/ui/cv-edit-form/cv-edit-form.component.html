@@ -52,12 +52,10 @@
   <div cdkDropList (cdkDropListDropped)="cvBlockDrop($event)" class="cv-blocks">
     @for (block of cvBlocks; track $index) {
     <div cdkDrag class="cv-block" cdkDragPreviewContainer="parent">
-      <app-cv-edit-form-block-wrapper
-        [blockTitle]="block.title"
-        [isDraggable]="true"
-      >
+      <app-cv-edit-form-block-wrapper [blockTitle]="block.title">
         <ng-container *ngComponentOutlet="block.component"></ng-container>
       </app-cv-edit-form-block-wrapper>
+      <tui-svg src="tuiIconDragLarge" class="handle" cdkDragHandle></tui-svg>
     </div>
     }
   </div>
