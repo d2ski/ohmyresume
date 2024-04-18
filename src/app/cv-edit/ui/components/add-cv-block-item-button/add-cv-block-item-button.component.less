@@ -1,0 +1,35 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.app-add-block-button {
+  width: 100%;
+}
+
+[tuiWrapper][data-appearance='app-add-block-button'] {
+  background: transparent;
+  color: var(--tui-link);
+
+  .wrapper-hover({
+        background: var(--tui-secondary-hover);
+    });
+
+  .wrapper-active({
+        background: var(--tui-secondary-active);
+    });
+
+  .wrapper-invalid({
+        color: var(--tui-negative);
+        background: var(--tui-error-bg);
+
+        .wrapper-hover({
+            background: var(--tui-error-bg-hover);
+        });
+
+        .wrapper-focus({
+            --tui-focus: var(--tui-negative);
+        });
+    });
+
+  span.t-content {
+    justify-content: flex-start;
+  }
+}

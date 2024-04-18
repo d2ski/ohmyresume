@@ -1,5 +1,12 @@
-<div>
-  <div>Компания 1</div>
-  <div>Компания 1</div>
-  <div>Компания 1</div>
+<div [formGroup]="cvForm">
+  <div formArrayName="experience">
+    @for (experience of cvForm.controls.experience.controls; let idx = $index;
+    track idx; ) {
+    <fieldset [formGroupName]="idx"></fieldset>
+    }
+  </div>
+
+  <app-add-cv-block-item-button (clicked)="onAddExperience()">
+    Добавить опыт работы
+  </app-add-cv-block-item-button>
 </div>
