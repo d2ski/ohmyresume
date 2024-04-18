@@ -1,0 +1,22 @@
+<div [formGroup]="cvForm">
+  <fieldset formGroupName="contacts">
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input formControlName="email">
+          Email
+          <input tuiTextfield type="email" />
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input-phone
+          formControlName="phone"
+          [countryCode]="'+'"
+          [phoneMaskAfterCountryCode]="'# (###) ###-##-##'"
+        >
+          Телефон
+          <input autocomplete="tel" tuiTextfield />
+        </tui-input-phone>
+      </div>
+    </div>
+  </fieldset>
+</div>

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CvEditComponent } from './cv-edit.component';
+import { CvEditPreviewComponent } from './cv-edit-preview.component';
 
-describe('CvEditComponent', () => {
-  let component: CvEditComponent;
-  let fixture: ComponentFixture<CvEditComponent>;
+describe('CvEditPreviewComponent', () => {
+  let component: CvEditPreviewComponent;
+  let fixture: ComponentFixture<CvEditPreviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CvEditComponent],
+      imports: [CvEditPreviewComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CvEditComponent);
+    fixture = TestBed.createComponent(CvEditPreviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

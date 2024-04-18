@@ -1,0 +1,64 @@
+<form [formGroup]="cvForm">
+  <!-- <div class="tui-form__row">
+    <tui-input
+      formControlName="title"
+      [tuiTextfieldLabelOutside]="true"
+      tuiHintContent="Необязательное название для Вашего резюме"
+    >
+      Название резюме
+      <input tuiTextfield />
+    </tui-input>
+  </div> -->
+  <div class="tui-form__row">
+    <fieldset formGroupName="header">
+      <div class="tui-form__row">
+        <tui-input formControlName="firstName">
+          Имя
+          <input tuiTextfield />
+        </tui-input>
+      </div>
+      <div class="tui-form__row">
+        <tui-input formControlName="lastName">
+          Фамилия
+          <input tuiTextfield />
+        </tui-input>
+      </div>
+      <div class="tui-form__row tui-form__row_multi-fields">
+        <div class="tui-form__multi-field">
+          <tui-input-number formControlName="age"> Возраст </tui-input-number>
+        </div>
+        <div class="tui-form__multi-field">
+          <tui-input formControlName="city">
+            Город
+            <input tuiTextfield />
+          </tui-input>
+        </div>
+        <div class="tui-form__multi-field">
+          <tui-input formControlName="residency">
+            Страна
+            <input tuiTextfield />
+          </tui-input>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="tui-form__row">
+    <app-cv-edit-form-block-wrapper blockTitle="Контакты">
+      <app-cv-edit-form-contacts />
+    </app-cv-edit-form-block-wrapper>
+  </div>
+
+  <div cdkDropList (cdkDropListDropped)="cvBlockDrop($event)" class="cv-blocks">
+    @for (block of cvBlocks; track $index) {
+    <div cdkDrag class="cv-block" cdkDragPreviewContainer="parent">
+      <app-cv-edit-form-block-wrapper
+        [blockTitle]="block.title"
+        [isDraggable]="true"
+      >
+        <ng-container *ngComponentOutlet="block.component"></ng-container>
+      </app-cv-edit-form-block-wrapper>
+    </div>
+    }
+  </div>
+</form>

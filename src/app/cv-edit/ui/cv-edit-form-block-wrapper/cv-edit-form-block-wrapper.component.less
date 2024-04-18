@@ -1,0 +1,23 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.tile-content {
+  padding: 1rem;
+  border: 1px solid var(--tui-base-03);
+  border-radius: var(--tui-radius-l);
+  background-color: var(--tui-base-01);
+}
+
+.handle {
+  .transition(opacity);
+  position: absolute;
+  right: 0.75rem;
+  top: 1rem;
+  background: var(--tui-base-01);
+  opacity: 0;
+  cursor: move;
+
+  .cv-block:hover &,
+  .cv-block._dragged & {
+    opacity: 0.7;
+  }
+}

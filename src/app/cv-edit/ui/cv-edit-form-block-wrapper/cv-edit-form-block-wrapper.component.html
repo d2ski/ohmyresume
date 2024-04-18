@@ -1,0 +1,9 @@
+<div class="tile-content">
+  <h3 class="tui-form__header tui-form__header_margin-top_none">
+    {{ blockTitle }}
+  </h3>
+  <ng-content></ng-content>
+  @if (isDraggable) {
+  <tui-svg src="tuiIconDragLarge" class="handle" cdkDragHandle></tui-svg>
+  }
+</div>
