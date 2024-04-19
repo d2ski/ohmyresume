@@ -1,0 +1,26 @@
+<tui-accordion-item class="container">
+  <div class="header">
+    <div class="job-details">
+      <div class="job-title tui-text_body-m">
+        {{ title ? title : '(Не указано)' }}
+      </div>
+      @if (subtitle) {
+      <div class="job-period tui-text_body-s">
+        {{ subtitle }}
+      </div>
+      }
+    </div>
+    <button
+      appearance="flat"
+      icon="tuiIconTrash2"
+      tuiIconButton
+      type="button"
+      size="s"
+      (click)="onDeleteItem($event)"
+    ></button>
+  </div>
+
+  <ng-template tuiAccordionItemContent>
+    <ng-content></ng-content>
+  </ng-template>
+</tui-accordion-item>

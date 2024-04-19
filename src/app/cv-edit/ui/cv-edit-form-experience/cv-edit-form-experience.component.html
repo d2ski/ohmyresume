@@ -1,8 +1,51 @@
 <div [formGroup]="cvForm">
-  <div formArrayName="experience">
+  <div formArrayName="experience" class="experience">
     @for (experience of cvForm.controls.experience.controls; let idx = $index;
     track idx; ) {
-    <fieldset [formGroupName]="idx"></fieldset>
+    <div class="experience-item">
+      <app-cv-block-item
+        [title]="getExperienceTitle(experience)"
+        [subtitle]="getExperienceSubtitle(experience)"
+        (deleteItem)="onDeleteExperience(idx)"
+      >
+        <fieldset [formGroupName]="idx">
+          <div class="tui-form__row tui-form__row_multi-fields">
+            <div class="tui-form__multi-field">
+              <tui-input formControlName="jobTitle">
+                Должность
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </div>
+            <div class="tui-form__multi-field">
+              <tui-input formControlName="employer">
+                Компания
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </div>
+          </div>
+          <div class="tui-form__row tui-form__row_multi-fields">
+            <div class="tui-form__multi-field">
+              <tui-input-month
+                formControlName="monthStart"
+                tuiTextfieldSize="l"
+                [tuiTextfieldCleaner]="true"
+              >
+                Начало
+              </tui-input-month>
+            </div>
+            <div class="tui-form__multi-field">
+              <tui-input-month
+                formControlName="monthEnd"
+                tuiTextfieldSize="l"
+                [tuiTextfieldCleaner]="true"
+              >
+                Окончание
+              </tui-input-month>
+            </div>
+          </div>
+        </fieldset>
+      </app-cv-block-item>
+    </div>
     }
   </div>
 

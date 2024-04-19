@@ -1,13 +1,12 @@
+import { TuiMonthLike } from '@taiga-ui/cdk';
 import { ResumeContacts } from './contacts';
 import { ResumeHeader } from './header';
 
 export type Experience = {
   jobTitle: string | null;
   employer: string | null;
-  monthStart: number | null;
-  yearStart: number | null;
-  monthEnd: number | null;
-  yearEnd: number | null;
+  monthStart: TuiMonthLike | null;
+  monthEnd: TuiMonthLike | null;
   stillWork: boolean;
   description: string | null;
   order: number;
