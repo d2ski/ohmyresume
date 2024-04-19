@@ -1,11 +1,35 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
 
 [tuiWrapper][data-appearance='flat-textfield'] {
-  background-color: #fafafa;
+  background-color: var(--text-field-bg);
 
   &:after {
     border: none;
   }
+
+  .t-tools-wrapper {
+    box-shadow: none;
+    border-bottom: 1px solid var(--tui-base-04);
+  }
+
+  //   .tui-editor-socket {
+  //     p {
+  //       margin: 0.5rem 0;
+  //     }
+
+  //     ul {
+  //       margin: 0.5rem 1rem 0.5rem 1.5rem;
+  //     }
+
+  //     ul:not([data-type]) > li:before {
+  //       width: 0.35rem;
+  //       height: 0.35rem;
+  //     }
+
+  //     li {
+  //       margin: 0.25rem 0;
+  //     }
+  //   }
 }
 
 .cv-blocks {

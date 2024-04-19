@@ -1,12 +1,17 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CvEditFormService } from '../../data-access/cv-edit-form.service';
-import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import {
+  TuiButtonModule,
+  TuiLabelModule,
+  TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TuiInputModule, TuiInputMonthModule } from '@taiga-ui/kit';
 import { AddCvBlockItemButtonComponent } from '../components/add-cv-block-item-button/add-cv-block-item-button.component';
 import { CvBlockItemComponent } from '../components/cv-block-item/cv-block-item.component';
 import { formatTimePeriod } from '../../utils/format-time-period';
+import { TuiEditorModule, TuiEditorTool } from '@tinkoff/tui-editor';
 
 @Component({
   selector: 'app-cv-edit-form-experience',
@@ -17,6 +22,8 @@ import { formatTimePeriod } from '../../utils/format-time-period';
     TuiInputModule,
     TuiButtonModule,
     TuiInputMonthModule,
+    TuiEditorModule,
+    TuiLabelModule,
     TuiTextfieldControllerModule,
     AddCvBlockItemButtonComponent,
     CvBlockItemComponent,
@@ -28,6 +35,14 @@ import { formatTimePeriod } from '../../utils/format-time-period';
 export class CvEditFormExperienceComponent {
   private readonly cvFormService = inject(CvEditFormService);
   readonly cvForm = this.cvFormService.cvForm;
+
+  readonly editorTools: TuiEditorTool[] = [
+    TuiEditorTool.Bold,
+    TuiEditorTool.Italic,
+    TuiEditorTool.Underline,
+    TuiEditorTool.List,
+    TuiEditorTool.Link,
+  ];
 
   getExperienceTitle(experience: FormGroup): string {
     if (!experience.controls['jobTitle'].value) {

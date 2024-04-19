@@ -43,6 +43,15 @@
               </tui-input-month>
             </div>
           </div>
+          <div class="tui-form__row">
+            <tui-editor
+              formControlName="description"
+              [tools]="editorTools"
+              class="description-editor"
+            >
+              Обязанности и достижения
+            </tui-editor>
+          </div>
         </fieldset>
       </app-cv-block-item>
     </div>

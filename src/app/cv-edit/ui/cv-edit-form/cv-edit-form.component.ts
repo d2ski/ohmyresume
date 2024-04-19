@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  INJECTOR,
   Input,
   Type,
   ViewEncapsulation,
@@ -27,6 +28,11 @@ import { CvEditFormContactsComponent } from '../cv-edit-form-contacts/cv-edit-fo
 import { CvEditFormBlockWrapperComponent } from '../cv-edit-form-block-wrapper/cv-edit-form-block-wrapper.component';
 import { CvEditFormEducationComponent } from '../cv-edit-form-education/cv-edit-form-education.component';
 import { CvEditFormExperienceComponent } from '../cv-edit-form-experience/cv-edit-form-experience.component';
+import {
+  TUI_EDITOR_DEFAULT_EXTENSIONS,
+  TUI_EDITOR_EXTENSIONS,
+  tuiEditorOptionsProvider,
+} from '@tinkoff/tui-editor';
 
 type CvBlock = {
   title: string;
@@ -63,6 +69,13 @@ type CvBlock = {
         appearance: 'flat-textfield',
       },
     },
+    {
+      provide: TUI_EDITOR_EXTENSIONS,
+      useFactory: () => [...TUI_EDITOR_DEFAULT_EXTENSIONS],
+    },
+    tuiEditorOptionsProvider({
+      appearence: 'flat-textfield',
+    }),
   ],
 })
 export class CvEditFormComponent {
