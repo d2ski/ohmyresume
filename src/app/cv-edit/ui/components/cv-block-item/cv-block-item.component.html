@@ -1,4 +1,4 @@
-<tui-accordion-item class="container">
+<tui-accordion-item class="cv-block-item">
   <div class="header">
     <div class="job-details">
       <div class="job-title tui-text_body-m">
@@ -10,14 +10,19 @@
       </div>
       }
     </div>
-    <button
-      appearance="flat"
-      icon="tuiIconTrash2"
-      tuiIconButton
-      type="button"
-      size="s"
-      (click)="onDeleteItem($event)"
-    ></button>
+    <div class="controls">
+      <button
+        appearance="flat"
+        icon="tuiIconTrash2"
+        tuiIconButton
+        type="button"
+        size="s"
+        (click)="onDeleteItem($event)"
+      ></button>
+      <div class="drag-handle">
+        <ng-content select="drag-handle"></ng-content>
+      </div>
+    </div>
   </div>
 
   <ng-template tuiAccordionItemContent>

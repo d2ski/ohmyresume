@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CvEditFormService } from '../../data-access/cv-edit-form.service';
 import {
   TuiButtonModule,
   TuiLabelModule,
+  TuiSvgModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +18,11 @@ import { AddCvBlockItemButtonComponent } from '../components/add-cv-block-item-b
 import { CvBlockItemComponent } from '../components/cv-block-item/cv-block-item.component';
 import { formatTimePeriod } from '../../utils/format-time-period';
 import { TuiEditorModule, TuiEditorTool } from '@tinkoff/tui-editor';
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-cv-edit-form-experience',
@@ -25,12 +36,15 @@ import { TuiEditorModule, TuiEditorTool } from '@tinkoff/tui-editor';
     TuiEditorModule,
     TuiLabelModule,
     TuiTextfieldControllerModule,
+    TuiSvgModule,
+    DragDropModule,
     AddCvBlockItemButtonComponent,
     CvBlockItemComponent,
   ],
   templateUrl: './cv-edit-form-experience.component.html',
   styleUrl: './cv-edit-form-experience.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class CvEditFormExperienceComponent {
   private readonly cvFormService = inject(CvEditFormService);
@@ -69,5 +83,12 @@ export class CvEditFormExperienceComponent {
 
   onDeleteExperience(idx: number) {
     this.cvFormService.deleteExperience(idx);
+  }
+
+  onExperienceItemDrop(event: CdkDragDrop<FormGroup>) {
+    const experienceItems = this.cvForm.controls.experience.getRawValue();
+    moveItemInArray(experienceItems, event.previousIndex, event.currentIndex);
+
+    this.cvForm.controls.experience.patchValue(experienceItems);
   }
 }

@@ -1,13 +1,23 @@
 <div [formGroup]="cvForm">
-  <div formArrayName="experience" class="experience">
+  <div
+    formArrayName="experience"
+    class="experience"
+    cdkDropList
+    (cdkDropListDropped)="onExperienceItemDrop($event)"
+  >
     @for (experience of cvForm.controls.experience.controls; let idx = $index;
     track idx; ) {
-    <div class="experience-item">
+    <div class="experience-item" cdkDrag cdkDragPreviewContainer="parent">
       <app-cv-block-item
         [title]="getExperienceTitle(experience)"
         [subtitle]="getExperienceSubtitle(experience)"
         (deleteItem)="onDeleteExperience(idx)"
       >
+        <tui-svg
+          ngProjectAs="drag-handle"
+          src="tuiIconDrag"
+          cdkDragHandle
+        ></tui-svg>
         <fieldset [formGroupName]="idx">
           <div class="tui-form__row tui-form__row_multi-fields">
             <div class="tui-form__multi-field">

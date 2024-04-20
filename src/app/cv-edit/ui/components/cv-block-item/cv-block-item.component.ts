@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   Output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiAccordionModule } from '@taiga-ui/kit';
@@ -16,6 +17,7 @@ import { TuiButtonModule, TuiSvgModule } from '@taiga-ui/core';
   templateUrl: './cv-block-item.component.html',
   styleUrl: './cv-block-item.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class CvBlockItemComponent {
   @Input() title: string | null = null;

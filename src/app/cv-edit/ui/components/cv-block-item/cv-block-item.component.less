@@ -1,13 +1,38 @@
-.container {
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.cv-block-item {
   width: 100%;
-}
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  &:hover {
+    .header .controls {
+      opacity: 1;
+    }
+  }
 
-  .job-title {
-    font-weight: 600;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .controls {
+      .transition(opacity);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+
+      .drag-handle {
+        cursor: move;
+        display: grid;
+        place-items: center;
+      }
+    }
+
+    .job-title {
+      font-weight: 600;
+    }
+
+    .job-details {
+      flex-grow: 1;
+    }
   }
 }
