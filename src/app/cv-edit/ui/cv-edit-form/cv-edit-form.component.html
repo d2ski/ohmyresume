@@ -13,7 +13,12 @@
   <fieldset formGroupName="header">
     <div class="personal">
       <div class="photo">
-        <app-image-control [width]="120" [height]="120"></app-image-control>
+        <!-- <app-image-control [width]="120" [height]="120"></app-image-control> -->
+        <app-image-input
+          formControlName="photo"
+          [width]="120"
+          [height]="120"
+        ></app-image-input>
       </div>
       <div class="name">
         <div class="tui-form__row">

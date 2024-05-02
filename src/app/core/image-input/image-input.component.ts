@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  Input,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageControlComponent } from '../image-control/image-control.component';
-import { ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-image-input',
@@ -10,24 +15,49 @@ import { ControlValueAccessor } from '@angular/forms';
   templateUrl: './image-input.component.html',
   styleUrl: './image-input.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ImageInputComponent),
+      multi: true,
+    },
+  ],
 })
 export class ImageInputComponent implements ControlValueAccessor {
-  image: string | null = null;
+  @Input({ required: true }) width!: number;
+  @Input({ required: true }) height!: number;
 
-  writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
+  image: string | null = null;
+  disabled = false;
+
+  private onChange: (image: string | null) => void = () => {
+    //
+  };
+
+  onTouched: () => void = () => {
+    //
+  };
+
+  writeValue(value: string | null): void {
+    this.image = value;
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   registerOnChange(fn: any): void {
-    throw new Error('Method not implemented.');
+    this.onChange = fn;
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
+    this.onTouched = fn;
   }
+
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    this.disabled = isDisabled;
   }
 
   onImageChanged(image: string | null) {
     this.image = image;
+    this.onChange(image);
   }
 }

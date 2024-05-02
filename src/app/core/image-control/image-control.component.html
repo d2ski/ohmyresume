@@ -4,7 +4,9 @@
   [style.height.px]="imageHeight()"
 >
   <div class="preview">
+    @if (imageSource()) {
     <img [src]="imageSource()" alt="" />
+    }
   </div>
 
   <input
@@ -14,6 +16,7 @@
     (click)="inputField.value = ''"
     (change)="fileSelected($event)"
     accept="image/png, image/jpeg"
+    [disabled]="disabled"
   />
 
   @if (!isLoaded()) {
@@ -51,30 +54,33 @@
 </div>
 
 <ng-template #cropperDialog let-observer>
-  <h2 class="tui-text_h6">Редактировать фото</h2>
-  <div class="cropper-content">
-    <image-cropper
-      #imageCropper
-      [imageFile]="data?.image"
-      [maintainAspectRatio]="true"
-      [aspectRatio]="imageWidth() / imageHeight()"
-      [resizeToHeight]="imageHeight()"
-      [resizeToWidth]="imageWidth()"
-      (imageCropped)="imageCropped($event)"
-      (cropperReady)="cropperReady()"
-    >
-    </image-cropper>
-  </div>
-  <div class="cropper-actions">
-    <button
-      icon="tuiIconSave"
-      tuiButton
-      type="button"
-      size="m"
-      appearance="primary"
-      (click)="saveCroppedImage()"
-    >
-      Сохранить
-    </button>
+  <div class="cropper-dialog">
+    <h2 class="tui-text_h6">Редактировать фото</h2>
+    <div class="cropper-content">
+      <image-cropper
+        #imageCropper
+        [imageFile]="data?.image"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="imageWidth() / imageHeight()"
+        [resizeToHeight]="imageHeight()"
+        [resizeToWidth]="imageWidth()"
+        [disabled]="disabled"
+        (imageCropped)="imageCropped($event)"
+        (cropperReady)="cropperReady()"
+      >
+      </image-cropper>
+    </div>
+    <div class="cropper-actions">
+      <button
+        icon="tuiIconSave"
+        tuiButton
+        type="button"
+        size="m"
+        appearance="primary"
+        (click)="saveCroppedImage()"
+      >
+        Сохранить
+      </button>
+    </div>
   </div>
 </ng-template>

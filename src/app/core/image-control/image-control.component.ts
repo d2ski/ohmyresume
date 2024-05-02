@@ -2,8 +2,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
+  EventEmitter,
   Inject,
   Input,
+  Output,
   signal,
   TemplateRef,
   ViewChild,
@@ -37,6 +40,7 @@ import { Subscription } from 'rxjs';
 export class ImageControlComponent {
   imageHeight = signal(0);
   imageWidth = signal(0);
+  imageSource = signal<string | null>(null);
 
   @Input() set width(value: number) {
     this.imageWidth.set(value);
@@ -46,32 +50,20 @@ export class ImageControlComponent {
     this.imageHeight.set(value);
   }
 
-  placeholder = computed(
-    () => `https://placehold.co/${this.imageWidth()}x${this.imageHeight()}`
-  );
+  @Input() set image(value: string | null) {
+    this.imageSource.set(value);
+  }
 
-  imageSource = computed(() => {
-    if (this.croppedImage()) {
-      return this.croppedImage()?.imageUrl;
-    }
+  @Input() disabled = false;
 
-    return this.placeholder();
-  });
+  @Output() imageChanged = new EventEmitter<string | null>();
 
-  isLoaded = computed(() => {
-    if (!this.croppedImage()) {
-      return false;
-    }
-
-    return true;
-  });
+  isLoaded = computed(() => !!this.imageSource());
 
   data: CropperData | undefined = undefined;
   result = signal<CropperResult | undefined>(undefined);
   cropperPosition: CropperPosition | null = null;
-
   dialog: Subscription | undefined = undefined;
-  croppedImage = signal<CropperResult | undefined>(undefined);
 
   @ViewChild('cropperDialog', { static: true })
   cropperDialog!: TemplateRef<TuiDialogContext>;
@@ -80,7 +72,11 @@ export class ImageControlComponent {
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService
-  ) {}
+  ) {
+    effect(() => {
+      this.imageChanged.emit(this.imageSource());
+    });
+  }
 
   fileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -124,13 +120,13 @@ export class ImageControlComponent {
       return;
     }
 
-    this.croppedImage.set({ ...result });
+    this.imageSource.set(result.imageUrl);
 
     this.dialog?.unsubscribe();
   }
 
   resetImage() {
-    this.croppedImage.set(undefined);
+    this.imageSource.set(null);
     this.cropperPosition = null;
   }
 }

@@ -7,7 +7,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { CvEditFormComponent } from './ui/cv-edit-form/cv-edit-form.component';
 import { CvEditPreviewComponent } from './ui/cv-edit-preview/cv-edit-preview.component';
-import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Resume } from './data-access/models/resume/resume.interface';
 import { CvEditFormService } from './data-access/cv-edit-form.service';

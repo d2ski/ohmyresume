@@ -1,1 +1,7 @@
-<app-image-control></app-image-control>
+<app-image-control
+  [image]="image"
+  [width]="width"
+  [height]="height"
+  [disabled]="disabled"
+  (imageChanged)="onImageChanged($event)"
+></app-image-control>
