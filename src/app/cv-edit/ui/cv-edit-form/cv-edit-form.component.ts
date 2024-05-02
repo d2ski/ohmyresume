@@ -32,6 +32,7 @@ import {
   TUI_EDITOR_EXTENSIONS,
   tuiEditorOptionsProvider,
 } from '@tinkoff/tui-editor';
+import { ImageControlComponent } from '../../../core/image-control/image-control.component';
 
 type CvBlock = {
   title: string;
@@ -52,6 +53,7 @@ type CvBlock = {
     TuiHintModule,
     TuiSvgModule,
     DragDropModule,
+    ImageControlComponent,
     CvEditFormBlockWrapperComponent,
     CvEditFormContactsComponent,
     CvEditFormEducationComponent,

@@ -8,6 +8,7 @@ export class CvEditFormService {
   readonly cvForm = this.fb.group({
     title: [''],
     header: this.fb.group({
+      photo: [''],
       firstName: [''],
       lastName: [''],
       age: new FormControl<number | null>(null),

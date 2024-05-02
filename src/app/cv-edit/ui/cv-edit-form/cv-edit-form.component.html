@@ -9,39 +9,46 @@
       <input tuiTextfield />
     </tui-input>
   </div> -->
-  <div class="tui-form__row">
-    <fieldset formGroupName="header">
-      <div class="tui-form__row">
-        <tui-input formControlName="firstName">
-          Имя
-          <input tuiTextfield />
-        </tui-input>
+
+  <fieldset formGroupName="header">
+    <div class="personal">
+      <div class="photo">
+        <app-image-control [width]="120" [height]="120"></app-image-control>
       </div>
-      <div class="tui-form__row">
-        <tui-input formControlName="lastName">
-          Фамилия
-          <input tuiTextfield />
-        </tui-input>
-      </div>
-      <div class="tui-form__row tui-form__row_multi-fields">
-        <div class="tui-form__multi-field">
-          <tui-input-number formControlName="age"> Возраст </tui-input-number>
-        </div>
-        <div class="tui-form__multi-field">
-          <tui-input formControlName="city">
-            Город
+      <div class="name">
+        <div class="tui-form__row">
+          <tui-input formControlName="firstName">
+            Имя
             <input tuiTextfield />
           </tui-input>
         </div>
-        <div class="tui-form__multi-field">
-          <tui-input formControlName="residency">
-            Страна
+        <div class="tui-form__row">
+          <tui-input formControlName="lastName">
+            Фамилия
             <input tuiTextfield />
           </tui-input>
         </div>
       </div>
-    </fieldset>
-  </div>
+    </div>
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input-number formControlName="age"> Возраст </tui-input-number>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input formControlName="city">
+          Город
+          <input tuiTextfield />
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input formControlName="residency">
+          Страна
+          <input tuiTextfield />
+        </tui-input>
+      </div>
+    </div>
+  </fieldset>
 
   <div class="tui-form__row">
     <app-cv-edit-form-block-wrapper blockTitle="Контакты">

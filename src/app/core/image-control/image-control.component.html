@@ -1,0 +1,80 @@
+<div
+  class="image-upload"
+  [style.width.px]="imageWidth()"
+  [style.height.px]="imageHeight()"
+>
+  <div class="preview">
+    <img [src]="imageSource()" alt="" />
+  </div>
+
+  <input
+    #inputField
+    type="file"
+    hidden
+    (click)="inputField.value = ''"
+    (change)="fileSelected($event)"
+    accept="image/png, image/jpeg"
+  />
+
+  @if (!isLoaded()) {
+  <button
+    icon="tuiIconPlusCircle"
+    tuiButton
+    type="button"
+    size="s"
+    appearance="flat"
+    class="add-image"
+    (click)="inputField.click()"
+  >
+    Фото
+  </button>
+  } @else {
+  <div class="controls">
+    <button
+      icon="tuiIconEdit2"
+      tuiIconButton
+      type="button"
+      size="s"
+      appearance="flat"
+      (click)="showCropperDialog(cropperDialog)"
+    ></button>
+    <button
+      icon="tuiIconTrash2"
+      tuiIconButton
+      type="button"
+      size="s"
+      appearance="flat"
+      (click)="resetImage()"
+    ></button>
+  </div>
+  }
+</div>
+
+<ng-template #cropperDialog let-observer>
+  <h2 class="tui-text_h6">Редактировать фото</h2>
+  <div class="cropper-content">
+    <image-cropper
+      #imageCropper
+      [imageFile]="data?.image"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="imageWidth() / imageHeight()"
+      [resizeToHeight]="imageHeight()"
+      [resizeToWidth]="imageWidth()"
+      (imageCropped)="imageCropped($event)"
+      (cropperReady)="cropperReady()"
+    >
+    </image-cropper>
+  </div>
+  <div class="cropper-actions">
+    <button
+      icon="tuiIconSave"
+      tuiButton
+      type="button"
+      size="m"
+      appearance="primary"
+      (click)="saveCroppedImage()"
+    >
+      Сохранить
+    </button>
+  </div>
+</ng-template>

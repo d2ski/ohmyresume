@@ -1,0 +1,45 @@
+.image-upload {
+  position: relative;
+
+  background-color: var(--text-field-bg);
+  border-radius: var(--tui-radius-l);
+
+  img {
+    border-radius: var(--tui-radius-l);
+  }
+
+  .add-image {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover {
+    .controls {
+      display: flex;
+      opacity: 0.8;
+    }
+  }
+
+  .controls {
+    padding: 10px 0 16px 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    opacity: 0;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--tui-base-01);
+    transition: all 2s;
+  }
+}
+
+.cropper-actions {
+  margin-top: 20px;
+  button {
+    float: right;
+  }
+}
