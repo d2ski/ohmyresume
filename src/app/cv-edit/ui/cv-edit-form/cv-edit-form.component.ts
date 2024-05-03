@@ -33,6 +33,7 @@ import {
   tuiEditorOptionsProvider,
 } from '@tinkoff/tui-editor';
 import { ImageInputComponent } from '../../../core/image-input/image-input.component';
+import { CvEditFormSkillsComponent } from '../cv-edit-form-skills/cv-edit-form-skills.component';
 
 type CvBlock = {
   title: string;
@@ -90,6 +91,10 @@ export class CvEditFormComponent {
     {
       title: 'Образование',
       component: CvEditFormEducationComponent,
+    },
+    {
+      title: 'Навыки',
+      component: CvEditFormSkillsComponent,
     },
   ];
 

@@ -21,6 +21,10 @@ export type Education = {
   order: number;
 };
 
+export type Skill = {
+  skillTitle: string;
+};
+
 export interface Resume {
   title: string | null;
   photo: string | null;
@@ -32,4 +36,5 @@ export interface Resume {
   contacts: ResumeContacts;
   experience: Experience[];
   education: Education[];
+  skills: Skill[];
 }

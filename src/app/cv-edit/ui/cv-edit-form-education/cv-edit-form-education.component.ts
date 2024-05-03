@@ -19,11 +19,7 @@ import {
   TuiTextfieldControllerModule,
   TuiSvgModule,
 } from '@taiga-ui/core';
-import {
-  TuiAccordionModule,
-  TuiInputModule,
-  TuiInputMonthModule,
-} from '@taiga-ui/kit';
+import { TuiInputModule, TuiInputMonthModule } from '@taiga-ui/kit';
 import { CvBlockItemComponent } from '../components/cv-block-item/cv-block-item.component';
 
 @Component({

@@ -1,0 +1,37 @@
+<div [formGroup]="cvForm">
+  <div
+    formArrayName="skills"
+    class="skills"
+    cdkDropList
+    (cdkDropListDropped)="onSkillsItemDrop($event)"
+  >
+    @for (skill of cvForm.controls.skills.controls; let idx = $index; track
+    idx;) {
+    <div class="skills-item" cdkDrag cdkDragPreviewContainer="parent">
+      <app-cv-block-item
+        [title]="skill.controls['skillTitle'].value"
+        (deleteItem)="onDeleteSkill(idx)"
+      >
+        <tui-svg
+          ngProjectAs="drag-handle"
+          src="tuiIconDrag"
+          cdkDragHandle
+        ></tui-svg>
+
+        <fieldset [formGroupName]="idx">
+          <div class="tui-form__row">
+            <tui-input formControlName="skillTitle">
+              Описание навыка
+              <input tuiTextfield type="text" />
+            </tui-input>
+          </div>
+        </fieldset>
+      </app-cv-block-item>
+    </div>
+    }
+  </div>
+
+  <app-add-cv-block-item-button (clicked)="onAddSkill()">
+    Добавить навык
+  </app-add-cv-block-item-button>
+</div>
