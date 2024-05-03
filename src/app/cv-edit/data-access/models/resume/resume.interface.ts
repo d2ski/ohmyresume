@@ -1,6 +1,5 @@
 import { TuiMonthLike } from '@taiga-ui/cdk';
 import { ResumeContacts } from './contacts';
-import { ResumeHeader } from './header';
 
 export type Experience = {
   jobTitle: string | null;
@@ -14,7 +13,12 @@ export type Experience = {
 
 export interface Resume {
   title: string | null;
-  header: ResumeHeader;
+  photo: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  age: number | null;
+  city: string | null;
+  residency: string | null;
   contacts: ResumeContacts;
   experience: Experience[];
 }
