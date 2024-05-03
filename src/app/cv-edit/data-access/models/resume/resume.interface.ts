@@ -11,6 +11,16 @@ export type Experience = {
   order: number;
 };
 
+export type Education = {
+  schoolTitle: string | null;
+  level: string | null;
+  faculty: string | null;
+  speciality: string | null;
+  monthStart: TuiMonthLike | null;
+  monthEnd: TuiMonthLike | null;
+  order: number;
+};
+
 export interface Resume {
   title: string | null;
   photo: string | null;
@@ -21,4 +31,5 @@ export interface Resume {
   residency: string | null;
   contacts: ResumeContacts;
   experience: Experience[];
+  education: Education[];
 }

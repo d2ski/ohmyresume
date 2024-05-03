@@ -1,4 +1,78 @@
-<div>
-  <div>Универ 1</div>
-  <div>Универ 1</div>
+<div [formGroup]="cvForm">
+  <div
+    formArrayName="education"
+    class="education"
+    cdkDropList
+    (cdkDropListDropped)="onEducationItemDrop($event)"
+  >
+    @for (education of cvForm.controls.education.controls; let idx = $index;
+    track idx;) {
+    <div class="education-item" cdkDrag cdkDragPreviewContainer="parent">
+      <app-cv-block-item
+        [title]="getEducationTitle(education)"
+        [subtitle]="getEducationSubtitle(education)"
+        (deleteItem)="onDeleteEducation(idx)"
+      >
+        <tui-svg
+          ngProjectAs="drag-handle"
+          src="tuiIconDrag"
+          cdkDragHandle
+        ></tui-svg>
+        <fieldset [formGroupName]="idx">
+          <div class="tui-form__row tui-form__row_multi-fields">
+            <div class="tui-form__multi-field">
+              <tui-input formControlName="schoolTitle">
+                Учебное заведение
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </div>
+            <div class="tui-form__multi-field">
+              <tui-input formControlName="level">
+                Уровень образования
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </div>
+          </div>
+          <div class="tui-form__row tui-form__row_multi-fields">
+            <div class="tui-form__multi-field">
+              <tui-input formControlName="faculty">
+                Факультет
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </div>
+            <div class="tui-form__multi-field">
+              <tui-input formControlName="speciality">
+                Специальность
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </div>
+          </div>
+          <div class="tui-form__row tui-form__row_multi-fields">
+            <div class="tui-form__multi-field">
+              <tui-input-month
+                formControlName="monthStart"
+                tuiTextfieldSize="l"
+                [tuiTextfieldCleaner]="true"
+              >
+                Начало
+              </tui-input-month>
+            </div>
+            <div class="tui-form__multi-field">
+              <tui-input-month
+                formControlName="monthEnd"
+                tuiTextfieldSize="l"
+                [tuiTextfieldCleaner]="true"
+              >
+                Окончание
+              </tui-input-month>
+            </div>
+          </div>
+        </fieldset>
+      </app-cv-block-item>
+    </div>
+    }
+  </div>
+  <app-add-cv-block-item-button (clicked)="onAddEducation()">
+    Добавить образование
+  </app-add-cv-block-item-button>
 </div>

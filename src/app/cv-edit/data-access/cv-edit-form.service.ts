@@ -18,6 +18,7 @@ export class CvEditFormService {
       phone: [''],
     }),
     experience: this.fb.array<FormGroup>([]),
+    education: this.fb.array<FormGroup>([]),
   });
 
   addExperience(): void {
@@ -38,5 +39,25 @@ export class CvEditFormService {
 
   deleteExperience(index: number): void {
     this.cvForm.controls.experience.removeAt(index);
+  }
+
+  addEducation(): void {
+    const educationCount = this.cvForm.controls.education.length;
+
+    const educationForm = this.fb.group({
+      schoolTitle: '',
+      level: '',
+      faculty: '',
+      speciality: '',
+      monthStart: null,
+      monthEnd: null,
+      order: educationCount ? educationCount - 1 : 0,
+    });
+
+    this.cvForm.controls.education.push(educationForm);
+  }
+
+  deleteEducation(index: number): void {
+    this.cvForm.controls.education.removeAt(index);
   }
 }

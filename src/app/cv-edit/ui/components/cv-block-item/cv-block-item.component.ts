@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -23,6 +24,8 @@ export class CvBlockItemComponent {
   @Input() title: string | null = null;
   @Input() subtitle: string | null = null;
   @Output() deleteItem = new EventEmitter<void>();
+
+  isOpen = true;
 
   onDeleteItem(event: Event) {
     event.stopPropagation();

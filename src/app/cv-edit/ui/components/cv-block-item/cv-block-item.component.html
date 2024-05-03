@@ -1,11 +1,11 @@
-<tui-accordion-item class="cv-block-item">
+<tui-accordion-item class="cv-block-item" [open]="isOpen">
   <div class="header">
-    <div class="job-details">
-      <div class="job-title tui-text_body-m">
+    <div class="details">
+      <div class="title tui-text_body-m">
         {{ title ? title : '(Не указано)' }}
       </div>
       @if (subtitle) {
-      <div class="job-period tui-text_body-s">
+      <div class="period tui-text_body-s">
         {{ subtitle }}
       </div>
       }

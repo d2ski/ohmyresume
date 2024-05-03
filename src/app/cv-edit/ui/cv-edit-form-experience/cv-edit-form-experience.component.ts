@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { CvEditFormService } from '../../data-access/cv-edit-form.service';
 import {
   TuiButtonModule,
-  TuiLabelModule,
   TuiSvgModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
@@ -34,7 +33,6 @@ import {
     TuiButtonModule,
     TuiInputMonthModule,
     TuiEditorModule,
-    TuiLabelModule,
     TuiTextfieldControllerModule,
     TuiSvgModule,
     DragDropModule,
