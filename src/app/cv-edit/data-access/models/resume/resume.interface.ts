@@ -55,4 +55,5 @@ export interface Resume {
   education: Education[];
   skills: Skill[];
   languages: Language[];
+  about: string | null;
 }

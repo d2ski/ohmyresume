@@ -35,6 +35,7 @@ import {
 import { ImageInputComponent } from '../../../core/image-input/image-input.component';
 import { CvEditFormSkillsComponent } from '../cv-edit-form-skills/cv-edit-form-skills.component';
 import { CvEditFormLanguagesComponent } from '../cv-edit-form-languages/cv-edit-form-languages.component';
+import { CvEditFormAboutComponent } from '../cv-edit-form-about/cv-edit-form-about.component';
 
 type CvBlock = {
   title: string;
@@ -100,6 +101,10 @@ export class CvEditFormComponent {
     {
       title: 'Иностранные языки',
       component: CvEditFormLanguagesComponent,
+    },
+    {
+      title: 'Обо мне',
+      component: CvEditFormAboutComponent,
     },
   ];
 

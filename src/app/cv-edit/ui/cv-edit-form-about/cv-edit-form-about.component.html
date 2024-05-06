@@ -1,0 +1,13 @@
+<div [formGroup]="cvForm">
+  <fieldset>
+    <div class="tui-form__row">
+      <tui-editor
+        formControlName="about"
+        [tools]="editorTools"
+        class="about-editor"
+      >
+        Дополнительная информация о себе
+      </tui-editor>
+    </div>
+  </fieldset>
+</div>

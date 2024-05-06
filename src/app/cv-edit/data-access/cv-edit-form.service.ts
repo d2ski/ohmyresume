@@ -21,6 +21,7 @@ export class CvEditFormService {
     education: this.fb.array<FormGroup>([]),
     skills: this.fb.array<FormGroup>([]),
     languages: this.fb.array<FormGroup>([]),
+    about: [''],
   });
 
   addExperience(): void {
