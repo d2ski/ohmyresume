@@ -1,0 +1,45 @@
+<div [formGroup]="cvForm">
+  <div
+    formArrayName="languages"
+    class="languages"
+    cdkDropList
+    (cdkDropListDropped)="onLanguagesItemDrop($event)"
+  >
+    @for (language of cvForm.controls.languages.controls; let idx = $index;
+    track idx;) {
+    <div class="languages-item" cdkDrag cdkDragPreviewContainer="parent">
+      <app-cv-block-item
+        [title]="getLanguageTitle(language)"
+        [subtitle]="getLanguageSubtitle(language)"
+        (deleteItem)="onDeleteLanguage(idx)"
+      >
+        <tui-svg
+          ngProjectAs="drag-handle"
+          src="tuiIconDrag"
+          cdkDragHandle
+        ></tui-svg>
+
+        <fieldset [formGroupName]="idx">
+          <div class="tui-form__row tui-form__row_multi-fields">
+            <div class="tui-form__multi-field">
+              <tui-input formControlName="langTitle">
+                Язык
+                <input tuiTextfield type="text" />
+              </tui-input>
+            </div>
+            <div class="tui-form__multi-field">
+              <tui-select formControlName="level" [stringify]="stringify">
+                Уровень
+                <select tuiSelect [items]="languageLevels"></select>
+              </tui-select>
+            </div>
+          </div>
+        </fieldset>
+      </app-cv-block-item>
+    </div>
+    }
+  </div>
+  <app-add-cv-block-item-button (clicked)="onAddLanguage()">
+    Добавить язык
+  </app-add-cv-block-item-button>
+</div>

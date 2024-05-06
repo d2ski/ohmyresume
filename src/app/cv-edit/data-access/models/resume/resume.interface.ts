@@ -1,7 +1,7 @@
 import { TuiMonthLike } from '@taiga-ui/cdk';
 import { ResumeContacts } from './contacts';
 
-export type Experience = {
+type Experience = {
   jobTitle: string | null;
   employer: string | null;
   monthStart: TuiMonthLike | null;
@@ -11,7 +11,7 @@ export type Experience = {
   order: number;
 };
 
-export type Education = {
+type Education = {
   schoolTitle: string | null;
   level: string | null;
   faculty: string | null;
@@ -21,8 +21,25 @@ export type Education = {
   order: number;
 };
 
-export type Skill = {
+type Skill = {
   skillTitle: string;
+};
+
+export enum LanguageLevel {
+  A1 = 'A1',
+  A2 = 'A2',
+  B1 = 'B1',
+  B2 = 'B2',
+  C1 = 'C1',
+  C2 = 'C2',
+}
+
+type Language = {
+  langTitle: string;
+  level: {
+    level: LanguageLevel;
+    label: string;
+  };
 };
 
 export interface Resume {
@@ -37,4 +54,5 @@ export interface Resume {
   experience: Experience[];
   education: Education[];
   skills: Skill[];
+  languages: Language[];
 }

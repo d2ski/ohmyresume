@@ -34,6 +34,7 @@ import {
 } from '@tinkoff/tui-editor';
 import { ImageInputComponent } from '../../../core/image-input/image-input.component';
 import { CvEditFormSkillsComponent } from '../cv-edit-form-skills/cv-edit-form-skills.component';
+import { CvEditFormLanguagesComponent } from '../cv-edit-form-languages/cv-edit-form-languages.component';
 
 type CvBlock = {
   title: string;
@@ -95,6 +96,10 @@ export class CvEditFormComponent {
     {
       title: 'Навыки',
       component: CvEditFormSkillsComponent,
+    },
+    {
+      title: 'Иностранные языки',
+      component: CvEditFormLanguagesComponent,
     },
   ];
 

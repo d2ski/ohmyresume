@@ -20,6 +20,7 @@ export class CvEditFormService {
     experience: this.fb.array<FormGroup>([]),
     education: this.fb.array<FormGroup>([]),
     skills: this.fb.array<FormGroup>([]),
+    languages: this.fb.array<FormGroup>([]),
   });
 
   addExperience(): void {
@@ -70,7 +71,20 @@ export class CvEditFormService {
     this.cvForm.controls.skills.push(skillForm);
   }
 
-  deleteSkill(index: number) {
+  deleteSkill(index: number): void {
     this.cvForm.controls.skills.removeAt(index);
+  }
+
+  addLanguage(): void {
+    const languageForm = this.fb.group({
+      langTitle: '',
+      level: null,
+    });
+
+    this.cvForm.controls.languages.push(languageForm);
+  }
+
+  deleteLanguage(index: number): void {
+    this.cvForm.controls.languages.removeAt(index);
   }
 }
