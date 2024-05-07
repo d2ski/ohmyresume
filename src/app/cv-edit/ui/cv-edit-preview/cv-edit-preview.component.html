@@ -1,5 +1,10 @@
 <div #container class="preview-container">
   <div class="page" [style]="transform">
+    @if (cv()) {
     <h1>Резюме</h1>
+    <ng-container
+      *ngComponentOutlet="cvTemplate; inputs: cvTemplateInputs()"
+    ></ng-container>
+    }
   </div>
 </div>

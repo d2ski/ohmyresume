@@ -1,12 +1,17 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   ElementRef,
   HostListener,
+  inject,
   OnInit,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CvTemplateBasicComponent } from '../templates/cv-template-basic/cv-template-basic.component';
+import { CvService } from '../../data-access/cv.service';
+import { Resume } from '../../data-access/models/resume/resume.interface';
 
 const PAGE_DIMENSIONS = {
   width: 794,
@@ -27,6 +32,13 @@ export class CvEditPreviewComponent implements OnInit {
   containerView!: ElementRef<HTMLElement>;
 
   transform = 'transform: scale(1, 1);';
+
+  private readonly cvService = inject(CvService);
+  readonly cv = this.cvService.cv;
+  cvTemplate = CvTemplateBasicComponent;
+  cvTemplateInputs = computed(() => {
+    return { cv: this.cv() };
+  });
 
   ngOnInit(): void {
     this.scaleContainer();

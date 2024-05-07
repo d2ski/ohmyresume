@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Resume } from './models/resume/resume.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CvService {
-  cv: Resume | undefined;
+  cv = signal<Resume | undefined>(undefined);
 
   updateCv(cv: Resume) {
-    this.cv = cv;
-    console.log('Updated CV', this.cv);
+    this.cv.set(cv);
+    console.log('Updated CV', this.cv());
   }
 }
