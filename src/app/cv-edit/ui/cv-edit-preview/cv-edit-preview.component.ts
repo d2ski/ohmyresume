@@ -6,7 +6,6 @@ import {
   HostListener,
   inject,
   OnInit,
-  signal,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -33,7 +32,7 @@ export class CvEditPreviewComponent implements OnInit {
   private readonly cvService = inject(CvService);
   readonly cv = this.cvService.cv;
   readonly pagesCount = this.cvService.pagesCount;
-  readonly currentPageIndex = signal(0);
+  readonly currentPageIndex = this.cvService.currentPageIndex;
 
   cvTemplate = CvTemplateBasicComponent;
 
@@ -58,14 +57,16 @@ export class CvEditPreviewComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.currentPageIndex() < this.pagesCount() - 1) {
-      this.currentPageIndex.update((index) => index + 1);
+    const currentIndex = this.currentPageIndex();
+    if (currentIndex < this.pagesCount() - 1) {
+      this.cvService.updateCurrentPageIndex(currentIndex + 1);
     }
   }
 
   previousPage() {
-    if (this.currentPageIndex() > 0) {
-      this.currentPageIndex.update((index) => index - 1);
+    const currentIndex = this.currentPageIndex();
+    if (currentIndex > 0) {
+      this.cvService.updateCurrentPageIndex(currentIndex - 1);
     }
   }
 }

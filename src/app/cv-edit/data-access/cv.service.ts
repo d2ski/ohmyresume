@@ -11,8 +11,8 @@ export class CvService {
   readonly #pagesCount = signal<number>(1);
   readonly pagesCount = this.#pagesCount.asReadonly();
 
-  //   readonly #currentPageIndex = signal(0);
-  //   readonly currentPageIndex = this.#currentPageIndex.asReadonly();
+  readonly #currentPageIndex = signal(0);
+  readonly currentPageIndex = this.#currentPageIndex.asReadonly();
 
   updateCv(cv: Resume) {
     this.#cv.set(cv);
@@ -21,9 +21,13 @@ export class CvService {
 
   updatePagesCount(count: number) {
     this.#pagesCount.set(count);
+
+    if (this.#currentPageIndex() > this.#pagesCount() - 1) {
+      this.#currentPageIndex.set(this.#pagesCount() - 1);
+    }
   }
 
-  //   updateCurrentPageIndex(index: number) {
-  //     this.#currentPageIndex.set(index);
-  //   }
+  updateCurrentPageIndex(index: number) {
+    this.#currentPageIndex.set(index);
+  }
 }
