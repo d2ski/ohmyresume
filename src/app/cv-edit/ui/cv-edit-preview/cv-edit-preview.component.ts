@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiButtonModule, TuiModeModule } from '@taiga-ui/core';
-import { CvTemplateBasicComponent } from '../templates/cv-template-basic/cv-template-basic.component';
+import { CvTemplateBaseComponent } from '../templates/cv-template-base/cv-template-base.component';
 import { CvService } from '../../data-access/cv.service';
 import { PAGE_DIMENSIONS } from '../../utils/page-dimensions.const';
 
@@ -45,7 +45,7 @@ export class CvEditPreviewComponent implements OnInit {
     () => this.pagesCount() === 1 || this.currentPageIndex() === 0
   );
 
-  cvTemplate = CvTemplateBasicComponent;
+  cvTemplate = CvTemplateBaseComponent;
 
   cvTemplateInputs = computed(() => {
     return {

@@ -14,14 +14,14 @@ import { Resume } from '../../../data-access/models/resume/resume.interface';
 import { CvService } from '../../../data-access/cv.service';
 
 @Component({
-  selector: 'app-cv-template-basic',
+  selector: 'app-cv-template-base',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './cv-template-basic.component.html',
-  styleUrl: './cv-template-basic.component.less',
+  templateUrl: './cv-template-base.component.html',
+  styleUrl: './cv-template-base.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CvTemplateBasicComponent implements AfterViewChecked {
+export class CvTemplateBaseComponent implements AfterViewChecked {
   private readonly cvService = inject(CvService);
   cvData: Resume | undefined;
 
