@@ -1,3 +1,8 @@
+<div class="preview-controls">
+  <button (click)="previousPage()"><</button>
+  Pages: {{ currentPageIndex() + 1 }} / {{ pagesCount() }}
+  <button (click)="nextPage()">></button>
+</div>
 <div #container class="preview-container">
   <div class="page" [style]="transform">
     @if (cv()) {

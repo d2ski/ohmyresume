@@ -1,32 +1,19 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   computed,
-  ContentChild,
-  effect,
   ElementRef,
   HostListener,
   inject,
   OnInit,
   signal,
   ViewChild,
-  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CvTemplateBasicComponent } from '../templates/cv-template-basic/cv-template-basic.component';
 import { CvService } from '../../data-access/cv.service';
-import { Resume } from '../../data-access/models/resume/resume.interface';
 import { PAGE_DIMENSIONS } from '../../utils/page-dimensions.const';
-import { Subject } from 'rxjs';
-
-// const PAGE_DIMENSIONS = {
-//   width: 794,
-//   height: 1122,
-//   margin: 20,
-// } as const;
 
 @Component({
   selector: 'app-cv-edit-preview',
@@ -45,12 +32,15 @@ export class CvEditPreviewComponent implements OnInit {
 
   private readonly cvService = inject(CvService);
   readonly cv = this.cvService.cv;
+  readonly pagesCount = this.cvService.pagesCount;
+  readonly currentPageIndex = signal(0);
 
   cvTemplate = CvTemplateBasicComponent;
 
   cvTemplateInputs = computed(() => {
     return {
       cv: this.cv(),
+      currentPageIndex: this.currentPageIndex(),
     };
   });
 
@@ -65,5 +55,17 @@ export class CvEditPreviewComponent implements OnInit {
       (containerHeight - PAGE_DIMENSIONS.margin) / PAGE_DIMENSIONS.height;
 
     this.transform = `transform: scale(${scaleFactor}, ${scaleFactor});`;
+  }
+
+  nextPage() {
+    if (this.currentPageIndex() < this.pagesCount() - 1) {
+      this.currentPageIndex.update((index) => index + 1);
+    }
+  }
+
+  previousPage() {
+    if (this.currentPageIndex() > 0) {
+      this.currentPageIndex.update((index) => index - 1);
+    }
   }
 }
