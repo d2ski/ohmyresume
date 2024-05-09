@@ -4,7 +4,7 @@
   align-items: center;
   background-color: red;
   overflow: none;
-  height: 100%;
+  height: calc(100% - 2rem);
 
   .page {
     width: 100%;
@@ -18,9 +18,17 @@
 }
 
 .preview-controls {
-  background-color: aqua;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 10;
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .page-switch {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--tui-text-01-night);
+  }
 }

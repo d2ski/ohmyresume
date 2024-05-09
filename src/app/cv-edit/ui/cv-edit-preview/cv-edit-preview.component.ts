@@ -10,6 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TuiButtonModule, TuiModeModule } from '@taiga-ui/core';
 import { CvTemplateBasicComponent } from '../templates/cv-template-basic/cv-template-basic.component';
 import { CvService } from '../../data-access/cv.service';
 import { PAGE_DIMENSIONS } from '../../utils/page-dimensions.const';
@@ -17,7 +18,7 @@ import { PAGE_DIMENSIONS } from '../../utils/page-dimensions.const';
 @Component({
   selector: 'app-cv-edit-preview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TuiButtonModule, TuiModeModule],
   templateUrl: './cv-edit-preview.component.html',
   styleUrl: './cv-edit-preview.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,6 +34,16 @@ export class CvEditPreviewComponent implements OnInit {
   readonly cv = this.cvService.cv;
   readonly pagesCount = this.cvService.pagesCount;
   readonly currentPageIndex = this.cvService.currentPageIndex;
+
+  readonly nextPageButtonDisabled = computed(
+    () =>
+      this.pagesCount() === 1 ||
+      this.currentPageIndex() === this.pagesCount() - 1
+  );
+
+  readonly prevPageButtonDisabled = computed(
+    () => this.pagesCount() === 1 || this.currentPageIndex() === 0
+  );
 
   cvTemplate = CvTemplateBasicComponent;
 
