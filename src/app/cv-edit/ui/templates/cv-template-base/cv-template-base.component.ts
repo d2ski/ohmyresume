@@ -37,7 +37,11 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
   @ViewChild('templatePageView', { static: true })
   templatePageView!: ElementRef<HTMLDivElement>;
 
-  _range = [...Array(25).keys()];
+  readonly templatePageViewStyle = {
+    backgroundColor: 'aquamarine',
+    height: '100%',
+    overflowY: 'hidden',
+  } as const;
 
   pages: HTMLDivElement[] = [];
 
@@ -88,7 +92,6 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
 
   private renderPageView(): void {
     const pageIndex = Math.min(this.pages.length - 1, this._currentPageIndex);
-
     this.templatePageView.nativeElement.innerHTML = '';
     this.templatePageView.nativeElement.appendChild(this.pages[pageIndex]);
   }

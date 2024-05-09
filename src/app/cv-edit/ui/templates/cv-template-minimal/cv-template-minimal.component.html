@@ -1,11 +1,13 @@
 <div #templateContentWrapper class="template-content-wrapper">
+  @for (n of _range; track $index) {
   <div #cvBlock class="cv-block">
-    <p>base</p>
+    <p>minimal test</p>
     <h1>{{ cvData?.firstName }} {{ cvData?.lastName }}</h1>
     <br />
     <h2>{{ cvData?.title }}</h2>
     <hr />
   </div>
+  }
 </div>
 
 <div #templatePageView [style]="templatePageViewStyle"></div>
