@@ -6,13 +6,13 @@ export class CvEditFormService {
   private readonly fb = inject(FormBuilder);
 
   readonly cvForm = this.fb.group({
-    title: [''],
+    title: ['Frontend-разработчик Angular'],
     photo: null,
-    firstName: [''],
-    lastName: [''],
-    age: new FormControl<number | null>(null),
-    city: [''],
-    residency: [''],
+    firstName: ['Иван'],
+    lastName: ['Демидов'],
+    age: new FormControl<number | null>(33),
+    city: ['Москва'],
+    residency: ['Россия'],
     contacts: this.fb.group({
       email: [''],
       phone: [''],
