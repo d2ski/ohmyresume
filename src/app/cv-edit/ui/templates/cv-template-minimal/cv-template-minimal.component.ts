@@ -11,8 +11,6 @@ import { CvTemplateBaseComponent } from '../cv-template-base/cv-template-base.co
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CvTemplateMinimalComponent extends CvTemplateBaseComponent {
-  _range = [...Array(25).keys()];
-
   constructor() {
     super();
   }

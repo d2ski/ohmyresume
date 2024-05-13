@@ -38,7 +38,6 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
   templatePageView!: ElementRef<HTMLDivElement>;
 
   readonly templatePageViewStyle = {
-    backgroundColor: 'aquamarine',
     height: '100%',
     overflowY: 'hidden',
   } as const;
