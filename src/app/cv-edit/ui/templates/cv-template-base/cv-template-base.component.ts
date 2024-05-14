@@ -59,6 +59,7 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     this.pages.flat().forEach((block) => {
       this.templateContentWrapper.nativeElement.appendChild(block);
     });
+    this.updateCvHTML();
   }
 
   private updatePages() {
@@ -100,5 +101,10 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     pageContent.classList.add('page-content');
 
     return pageContent;
+  }
+
+  private updateCvHTML(): void {
+    const cvHTML = this.templateContentWrapper.nativeElement.innerHTML;
+    this.cvService.updateCvHTML(cvHTML);
   }
 }

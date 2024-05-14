@@ -1,5 +1,6 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Resume } from './models/resume/resume.interface';
+import { CvPdfService } from './cv-pdf.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,16 +11,18 @@ export class CvService {
 
   readonly #pagesCount = signal<number>(1);
   readonly pagesCount = this.#pagesCount.asReadonly();
-
   readonly #currentPageIndex = signal(0);
   readonly currentPageIndex = this.#currentPageIndex.asReadonly();
+  readonly #cvHTML = signal('');
 
-  updateCv(cv: Resume) {
+  readonly #cvPdfService = inject(CvPdfService);
+
+  public updateCv(cv: Resume) {
     this.#cv.set(cv);
     console.log('Updated CV', this.cv());
   }
 
-  updatePagesCount(count: number) {
+  public updatePagesCount(count: number) {
     this.#pagesCount.set(count);
 
     if (this.#currentPageIndex() > this.#pagesCount() - 1) {
@@ -27,7 +30,17 @@ export class CvService {
     }
   }
 
-  updateCurrentPageIndex(index: number) {
+  public updateCurrentPageIndex(index: number) {
     this.#currentPageIndex.set(index);
+  }
+
+  public updateCvHTML(html: string) {
+    this.#cvHTML.set(`<div class="tpl-minimal">${html}</div>`);
+  }
+
+  public downloadPDF() {
+    if (this.#cvHTML()) {
+      this.#cvPdfService.download(this.#cvHTML());
+    }
   }
 }

@@ -5,10 +5,12 @@ import { provideRouter } from '@angular/router';
 import { TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE } from '@taiga-ui/i18n';
 import { appRoutes } from './app.routes';
 import { of } from 'rxjs';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
+    provideHttpClient(),
     provideRouter(appRoutes),
     importProvidersFrom(TuiRootModule),
     {

@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CvTemplateBaseComponent } from '../cv-template-base/cv-template-base.component';
 
@@ -9,6 +13,7 @@ import { CvTemplateBaseComponent } from '../cv-template-base/cv-template-base.co
   templateUrl: './cv-template-minimal.component.html',
   styleUrl: './cv-template-minimal.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class CvTemplateMinimalComponent extends CvTemplateBaseComponent {
   constructor() {

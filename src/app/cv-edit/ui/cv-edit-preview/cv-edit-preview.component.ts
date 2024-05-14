@@ -81,4 +81,8 @@ export class CvEditPreviewComponent implements OnInit {
       this.cvService.updateCurrentPageIndex(currentIndex - 1);
     }
   }
+
+  downloadPDF() {
+    this.cvService.downloadPDF();
+  }
 }
