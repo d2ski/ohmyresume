@@ -16,6 +16,7 @@ export class CvService {
   readonly #cvHTML = signal('');
 
   readonly #cvPdfService = inject(CvPdfService);
+  public isPdfLoading = this.#cvPdfService.isLoading;
 
   public updateCv(cv: Resume) {
     this.#cv.set(cv);

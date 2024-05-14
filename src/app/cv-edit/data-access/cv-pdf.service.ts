@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Base64 } from 'js-base64';
 
 @Injectable({
@@ -8,7 +8,11 @@ import { Base64 } from 'js-base64';
 export class CvPdfService {
   readonly #http = inject(HttpClient);
 
+  #isLoading = signal(false);
+  public isLoading = this.#isLoading.asReadonly();
+
   private processFile(htmlBase64String: string) {
+    this.#isLoading.set(true);
     this.#http
       .post(
         'http://127.0.0.1:8000/pdfs',
@@ -27,8 +31,12 @@ export class CvPdfService {
           console.log(response);
           const blob = new Blob([response], { type: 'application/pdf' });
           this.downloadFile(blob);
+          this.#isLoading.set(false);
         },
-        error: (e) => console.log(e),
+        error: (e) => {
+          console.log(e);
+          this.#isLoading.set(false);
+        },
       });
   }
 
@@ -65,6 +73,9 @@ export class CvPdfService {
 
   public download(cvHTML: string) {
     const htmlBase64String = Base64.encode(cvHTML);
-    this.processFile(htmlBase64String);
+
+    if (!this.#isLoading()) {
+      this.processFile(htmlBase64String);
+    }
   }
 }

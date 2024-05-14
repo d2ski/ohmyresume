@@ -36,6 +36,8 @@
       size="s"
       appearance="primary"
       (click)="downloadPDF()"
+      [showLoader]="isPdfLoading()"
+      [disabled]="isPdfLoading()"
     >
       Скачать
     </button>

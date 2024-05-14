@@ -34,6 +34,7 @@ export class CvEditPreviewComponent implements OnInit {
   readonly cv = this.cvService.cv;
   readonly pagesCount = this.cvService.pagesCount;
   readonly currentPageIndex = this.cvService.currentPageIndex;
+  readonly isPdfLoading = this.cvService.isPdfLoading;
 
   readonly nextPageButtonDisabled = computed(
     () =>
