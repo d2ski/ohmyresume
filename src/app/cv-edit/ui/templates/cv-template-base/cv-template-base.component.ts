@@ -128,6 +128,6 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
       return `${this.cvData.age} года`;
     }
 
-    return '';
+    return `${this.cvData.age} лет`;
   }
 }
