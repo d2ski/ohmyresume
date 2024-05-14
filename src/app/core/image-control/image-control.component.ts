@@ -105,10 +105,10 @@ export class ImageControlComponent {
   }
 
   imageCropped(event: ImageCroppedEvent) {
-    const { blob, objectUrl, cropperPosition } = event;
+    const { base64, cropperPosition } = event;
 
-    if (blob && objectUrl) {
-      this.result.set({ blob, imageUrl: objectUrl });
+    if (base64) {
+      this.result.set({ imageUrl: base64 });
       this.cropperPosition = cropperPosition;
     }
   }

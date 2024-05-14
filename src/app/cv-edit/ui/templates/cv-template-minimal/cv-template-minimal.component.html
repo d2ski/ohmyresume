@@ -10,7 +10,9 @@
         </div>
       </div>
       <div class="photo">
+        @if (cvData?.photo) {
         <img [src]="cvData?.photo" alt="" />
+        }
       </div>
     </div>
   </div>

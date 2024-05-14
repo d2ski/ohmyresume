@@ -5,7 +5,12 @@
 >
   <div class="preview">
     @if (imageSource()) {
-    <img [src]="imageSource()" alt="" />
+    <img
+      [src]="imageSource()"
+      alt=""
+      [style.width.px]="imageWidth()"
+      [style.height.px]="imageHeight()"
+    />
     }
   </div>
 
@@ -61,9 +66,12 @@
         #imageCropper
         [imageFile]="data?.image"
         [maintainAspectRatio]="true"
+        [output]="'base64'"
+        [format]="'webp'"
+        [imageQuality]="100"
         [aspectRatio]="imageWidth() / imageHeight()"
-        [resizeToHeight]="imageHeight()"
-        [resizeToWidth]="imageWidth()"
+        [resizeToHeight]="imageHeight() * 2"
+        [resizeToWidth]="imageWidth() * 2"
         [disabled]="disabled"
         (imageCropped)="imageCropped($event)"
         (cropperReady)="cropperReady()"

@@ -39,4 +39,6 @@
 
 .tpl-minimal .photo img {
   border-radius: 8px;
+  width: 120px;
+  height: 120px;
 }
