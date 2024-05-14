@@ -107,4 +107,27 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     const cvHTML = this.templateContentWrapper.nativeElement.innerHTML;
     this.cvService.updateCvHTML(cvHTML);
   }
+
+  get age(): string {
+    if (!this.cvData?.age) {
+      return '';
+    }
+
+    const lastDigit = this.cvData.age % 10;
+    const lastTwoDigits = this.cvData.age % 100;
+
+    if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
+      return `${this.cvData.age} лет`;
+    }
+
+    if (lastDigit === 1) {
+      return `${this.cvData.age} год`;
+    }
+
+    if (lastDigit >= 2 && lastDigit <= 4) {
+      return `${this.cvData.age} года`;
+    }
+
+    return '';
+  }
 }
