@@ -36,7 +36,8 @@ export class CvService {
   }
 
   public updateCvHTML(html: string) {
-    this.#cvHTML.set(`<div class="tpl-minimal">${html}</div>`);
+    const htmlClear = html.replace('ng-star-inserted', '');
+    this.#cvHTML.set(`<div class="tpl-minimal">${htmlClear}</div>`);
   }
 
   public downloadPDF() {
