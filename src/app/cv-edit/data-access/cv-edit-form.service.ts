@@ -14,8 +14,8 @@ export class CvEditFormService {
     city: ['Москва'],
     residency: ['Россия'],
     contacts: this.fb.group({
-      email: [''],
-      phone: [''],
+      email: ['test@test.ru'],
+      phone: ['+79112342423'],
     }),
     experience: this.fb.array<FormGroup>([]),
     education: this.fb.array<FormGroup>([]),

@@ -10,6 +10,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { maskitoTransform } from '@maskito/core';
 import { Resume } from '../../../data-access/models/resume/resume.interface';
 import { CvService } from '../../../data-access/cv.service';
 
@@ -108,7 +109,37 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     this.cvService.updateCvHTML(cvHTML);
   }
 
-  get age(): string {
+  get phoneFormatted(): string {
+    if (!this.cvData?.contacts.phone) {
+      return '';
+    }
+
+    const mask = {
+      mask: [
+        '+',
+        /\d/,
+        '(',
+        /\d/,
+        /\d/,
+        /\d/,
+        ')',
+        ' ',
+        /\d/,
+        /\d/,
+        /\d/,
+        '-',
+        /\d/,
+        /\d/,
+        '-',
+        /\d/,
+        /\d/,
+      ],
+    };
+
+    return maskitoTransform(this.cvData?.contacts.phone, mask);
+  }
+
+  get ageFormatted(): string {
     if (!this.cvData?.age) {
       return '';
     }

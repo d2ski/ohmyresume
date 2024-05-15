@@ -1,17 +1,63 @@
 <div #templateContentWrapper class="template-content-wrapper">
-  <div #cvBlock class="cv-block">
+  <!-- Персональная информация -->
+  <div #cvBlock class="header">
     <div class="personal">
       <div class="data">
         <div class="name">{{ cvData?.firstName }} {{ cvData?.lastName }}</div>
         <div class="job-title">{{ cvData?.title }}</div>
         <div class="details">
-          <span class="city">{{ cvData?.city }}</span>
-          <span class="age">Возраст: {{ cvData?.age }}</span>
+          @if (cvData?.city) {
+          <span class="city">
+            <img
+              class="icon"
+              src="https://img.icons8.com/ios-filled/50/marker.png"
+              alt="marker"
+            />
+            {{ cvData?.city }}
+          </span>
+          } @if (ageFormatted) {
+          <span class="age">
+            <img
+              class="icon"
+              src="https://img.icons8.com/ios-filled/50/information.png"
+              alt="info"
+            />
+            Возраст: {{ ageFormatted }}
+          </span>
+          }
         </div>
       </div>
       <div class="photo">
         @if (cvData?.photo) {
         <img [src]="cvData?.photo" alt="" />
+        }
+      </div>
+    </div>
+  </div>
+  <!-- Контакты -->
+  <div #cvBlock class="cv-block">
+    <div class="contacts">
+      <div class="block-header">Контакты</div>
+      <div class="break"></div>
+      <div class="block-content">
+        @if (cvData?.contacts?.email) {
+        <div class="email">
+          <img
+            class="icon"
+            src="https://img.icons8.com/ios-filled/50/email.png"
+            alt="email"
+          />
+          {{ cvData?.contacts?.email }}
+        </div>
+        } @if (cvData?.contacts?.phone) {
+        <div class="phone">
+          <img
+            class="icon"
+            src="https://img.icons8.com/ios-filled/50/phone.png"
+            alt="phone"
+          />
+          {{ phoneFormatted }}
+        </div>
         }
       </div>
     </div>

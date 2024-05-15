@@ -8,40 +8,80 @@
   font-style: normal;
 }
 
+.tpl-minimal .cv-block {
+  margin-top: 2em;
+  padding-bottom: 1em;
+}
+
+.tpl-minimal .block-header {
+  font-size: 1.5em;
+  font-weight: 800;
+}
+
+.tpl-minimal .block-content {
+  margin-top: 1em;
+}
+
+.tpl-minimal .icon {
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 2px;
+}
+
+.tpl-minimal .break {
+  margin-top: 1em;
+  border-bottom: 2px solid #d4d4d4;
+  position: relative;
+}
+
+.tpl-minimal .break::before {
+  content: '';
+  position: absolute;
+  bottom: -1;
+  left: 0;
+  width: 68px;
+  height: 2px;
+  background-color: #111;
+}
+
 .tpl-minimal .personal {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-bottom: 24px;
-  border-bottom: 2px solid #212121;
+  align-items: top;
+  min-height: 124px;
 }
 
-.tpl-minimal .data .name {
+.tpl-minimal .personal .data .name {
   font-size: 2.5em;
   line-height: 1.1;
   font-weight: 700;
 }
 
-.tpl-minimal .data .job-title {
+.tpl-minimal .personal .data .job-title {
   font-size: 1.25em;
   line-height: 1.2;
   font-weight: 500;
   margin-top: 0.5em;
 }
 
-.tpl-minimal .data .details {
+.tpl-minimal .personal .data .details {
   margin-top: 0.5em;
   font-size: 1em;
   line-height: 1.2;
   font-weight: 400;
 }
 
-.tpl-minimal .data .details .age {
-  margin-left: 2.25em;
+.tpl-minimal .personal .data .details span:not(:last-child) {
+  margin-right: 2.25em;
 }
 
 .tpl-minimal .photo img {
-  border-radius: 8px;
+  border-radius: 4px;
   width: 120px;
   height: 120px;
+}
+
+.tpl-minimal .contacts .block-content div {
+  display: inline-block;
+  width: 50%;
 }
