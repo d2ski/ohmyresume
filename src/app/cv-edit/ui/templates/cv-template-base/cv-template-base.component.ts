@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 import { maskitoTransform } from '@maskito/core';
 import { Resume } from '../../../data-access/models/resume/resume.interface';
 import { CvService } from '../../../data-access/cv.service';
+import { TuiMonthLike } from '@taiga-ui/cdk';
+import { formatTimePeriod } from '../../../utils/format-time-period';
 
 @Component({
   selector: 'app-cv-template-base',
@@ -160,5 +162,12 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     }
 
     return `${this.cvData.age} лет`;
+  }
+
+  public timePeriodFormatted(
+    monthStart: TuiMonthLike | null,
+    monthEnd: TuiMonthLike | null
+  ) {
+    return formatTimePeriod(monthStart, monthEnd);
   }
 }

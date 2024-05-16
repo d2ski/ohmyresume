@@ -1,5 +1,5 @@
 <div #templateContentWrapper class="template-content-wrapper">
-  <!-- Персональная информация -->
+  <!-- Personal info -->
   <div #cvBlock class="header">
     <div class="personal">
       <div class="data">
@@ -34,7 +34,8 @@
       </div>
     </div>
   </div>
-  <!-- Контакты -->
+
+  <!-- Contacts -->
   <div #cvBlock class="cv-block">
     <div class="contacts">
       <div class="block-header">Контакты</div>
@@ -62,6 +63,37 @@
       </div>
     </div>
   </div>
+
+  <!-- Experience -->
+  @if (cvData?.experience?.length) {
+  <div #cvBlock class="cv-block">
+    <div class="experience">
+      <div class="block-header">Опыт работы</div>
+      <div class="break"></div>
+      <div class="block-content">
+        @for (experience of cvData?.experience; track $index) {
+        <div class="block-element">
+          <div class="past-title">
+            <div class="title">
+              <div>{{ experience.employer }}</div>
+              <div>{{ experience.jobTitle }}</div>
+            </div>
+            <div class="period">
+              {{
+                timePeriodFormatted(experience.monthStart, experience.monthEnd)
+              }}
+            </div>
+          </div>
+          <div
+            class="past-description"
+            [innerHTML]="experience.description"
+          ></div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  }
 </div>
 
 <div

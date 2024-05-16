@@ -1,16 +1,17 @@
 @import url(https://fonts.googleapis.com/css2?family=Manrope:wght@500;800&display=swap);
 
 .tpl-minimal {
-  padding: 24px;
+  padding: 32px 44px;
   font-family: 'Manrope', serif;
   font-size: 16px;
   font-weight: 400;
   font-style: normal;
+  border-left: 44px solid #cbd5e1;
+  height: 100%;
 }
 
 .tpl-minimal .cv-block {
   margin-top: 2em;
-  padding-bottom: 1em;
 }
 
 .tpl-minimal .block-header {
@@ -19,7 +20,7 @@
 }
 
 .tpl-minimal .block-content {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 .tpl-minimal .icon {
@@ -42,6 +43,15 @@
   width: 68px;
   height: 2px;
   background-color: #111;
+}
+
+.tpl-minimal ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+
+.tpl-minimal ul li {
+  margin-bottom: 0.5em;
 }
 
 .tpl-minimal .personal {
@@ -84,4 +94,32 @@
 .tpl-minimal .contacts .block-content div {
   display: inline-block;
   width: 50%;
+}
+
+.tpl-minimal .block-content .block-element {
+  margin-bottom: 1.875em;
+}
+
+.tpl-minimal .block-element .past-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tpl-minimal .block-element .past-title .title div:nth-child(1) {
+  font-weight: 800;
+  margin-bottom: 0.25em;
+}
+
+.tpl-minimal .block-element .past-title .title div:nth-child(2) {
+  color: #737373;
+}
+
+.tpl-minimal .block-element .past-title .period {
+  font-size: 0.875em;
+  color: #737373;
+}
+
+.tpl-minimal .block-element .past-description {
+  padding-left: 1em;
+  margin-top: 0.5em;
 }

@@ -7,8 +7,8 @@ const formatMonth = ({ month }: TuiMonthLike): string =>
 const formatYear = ({ year }: TuiMonthLike): string => (year ? `${year}` : '');
 
 export function formatTimePeriod(
-  monthStart: TuiMonthLike,
-  monthEnd: TuiMonthLike
+  monthStart: TuiMonthLike | null,
+  monthEnd: TuiMonthLike | null
 ): string {
   if (!monthStart) {
     return '';
