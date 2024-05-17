@@ -163,6 +163,22 @@
     </div>
   </div>
   }
+
+  <!-- About -->
+  @if (cvData?.about) {
+  <div #cvBlock class="cv-block">
+    <div class="about">
+      <div class="block-header">О себе</div>
+      <div class="break"></div>
+      <div class="block-content">
+        <div
+          [innerHTML]="descriptionFormated(cvData!.about!)"
+          class="about-description"
+        ></div>
+      </div>
+    </div>
+  </div>
+  }
 </div>
 
 <div

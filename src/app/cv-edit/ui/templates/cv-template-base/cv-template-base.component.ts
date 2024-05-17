@@ -15,6 +15,7 @@ import { Resume } from '../../../data-access/models/resume/resume.interface';
 import { CvService } from '../../../data-access/cv.service';
 import { TuiMonthLike } from '@taiga-ui/cdk';
 import { formatTimePeriod } from '../../../utils/format-time-period';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cv-template-base',
@@ -50,6 +51,8 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
   @Input() set currentPageIndex(index: number) {
     this._currentPageIndex = index;
   }
+
+  readonly #sanitizer = inject(DomSanitizer);
 
   _currentPageIndex = 0;
 
@@ -169,5 +172,9 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     monthEnd: TuiMonthLike | null
   ) {
     return formatTimePeriod(monthStart, monthEnd);
+  }
+
+  public descriptionFormated(descriptionHTML: string): SafeHtml {
+    return this.#sanitizer.bypassSecurityTrustHtml(descriptionHTML);
   }
 }
