@@ -149,7 +149,7 @@
       <div class="break"></div>
       <div class="block-content">
         @for (language of cvData?.languages; track $index) { @if
-        (language.langTitle) {
+        (language.langTitle && language.level) {
         <div class="language">
           <div class="language-title">
             {{ language.langTitle }}
