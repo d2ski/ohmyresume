@@ -140,6 +140,29 @@
     </div>
   </div>
   }
+
+  <!-- Languages -->
+  @if (cvData?.languages?.length) {
+  <div #cvBlock class="cv-block">
+    <div class="languages">
+      <div class="block-header">Иностранные языки</div>
+      <div class="break"></div>
+      <div class="block-content">
+        @for (language of cvData?.languages; track $index) { @if
+        (language.langTitle) {
+        <div class="language">
+          <div class="language-title">
+            {{ language.langTitle }}
+          </div>
+          <div class="language-level">
+            {{ language.level.label }}
+          </div>
+        </div>
+        } }
+      </div>
+    </div>
+  </div>
+  }
 </div>
 
 <div

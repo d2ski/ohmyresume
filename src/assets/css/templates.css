@@ -135,3 +135,17 @@
   margin-right: 0.875em;
   display: inline-block;
 }
+
+.tpl-minimal .languages .block-content .language {
+  background-color: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-right: 0.875em;
+  display: inline-block;
+  text-align: center;
+}
+
+.tpl-minimal .languages .block-content .language .language-level {
+  color: #737373;
+  font-size: 0.75em;
+}
