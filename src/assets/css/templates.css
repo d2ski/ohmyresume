@@ -127,3 +127,11 @@
   padding-left: 1em;
   margin-top: 0.5em;
 }
+
+.tpl-minimal .skills .block-content .skill {
+  background-color: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-right: 0.875em;
+  display: inline-block;
+}

@@ -122,6 +122,24 @@
     </div>
   </div>
   }
+
+  <!-- Skills -->
+  @if (cvData?.skills?.length) {
+  <div #cvBlock class="cv-block">
+    <div class="skills">
+      <div class="block-header">Навыки</div>
+      <div class="break"></div>
+      <div class="block-content">
+        @for (skill of cvData?.skills; track $index) { @if (skill.skillTitle) {
+
+        <div class="skill">
+          {{ skill.skillTitle }}
+        </div>
+        } }
+      </div>
+    </div>
+  </div>
+  }
 </div>
 
 <div
