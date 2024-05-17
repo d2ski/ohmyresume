@@ -144,13 +144,13 @@
   <!-- Languages -->
   @if (cvData?.languages?.length) {
   <div #cvBlock class="cv-block">
-    <div class="languages">
+    <div class="skills">
       <div class="block-header">Иностранные языки</div>
       <div class="break"></div>
       <div class="block-content">
         @for (language of cvData?.languages; track $index) { @if
         (language.langTitle && language.level) {
-        <div class="language">
+        <div class="skill">
           <div class="language-title">
             {{ language.langTitle }}
           </div>

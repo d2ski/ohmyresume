@@ -171,24 +171,22 @@
   margin-top: 0.5em;
 }
 
-.tpl-minimal .skills .block-content .skill {
-  background-color: #f1f5f9;
-  padding: 4px 12px;
-  border-radius: 4px;
-  margin-right: 0.875em;
-  display: inline-block;
+.tpl-minimal .skills .block-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: -0.875em;
 }
 
-.tpl-minimal .languages .block-content .language {
+.tpl-minimal .skill {
   background-color: #f1f5f9;
   padding: 4px 12px;
   border-radius: 4px;
   margin-right: 0.875em;
-  display: inline-block;
+  margin-bottom: 0.875em;
   text-align: center;
 }
 
-.tpl-minimal .languages .block-content .language .language-level {
+.tpl-minimal .skills .block-content .skill .language-level {
   color: #737373;
   font-size: 0.75em;
 }
