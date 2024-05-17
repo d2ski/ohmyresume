@@ -105,18 +105,22 @@
   justify-content: space-between;
 }
 
+.tpl-minimal .block-element .past-title .title {
+  color: #737373;
+  width: 65%;
+}
+
 .tpl-minimal .block-element .past-title .title div:nth-child(1) {
   font-weight: 800;
   margin-bottom: 0.25em;
-}
-
-.tpl-minimal .block-element .past-title .title div:nth-child(2) {
-  color: #737373;
+  color: #000;
 }
 
 .tpl-minimal .block-element .past-title .period {
   font-size: 0.875em;
   color: #737373;
+  width: max-content;
+  text-align: right;
 }
 
 .tpl-minimal .block-element .past-description {

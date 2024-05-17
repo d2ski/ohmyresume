@@ -94,6 +94,34 @@
     </div>
   </div>
   }
+
+  <!-- Education -->
+  @if (cvData?.education?.length) {
+  <div #cvBlock class="cv-block">
+    <div class="education">
+      <div class="block-header">Образование</div>
+      <div class="break"></div>
+      <div class="block-content">
+        @for (education of cvData?.education; track $index) {
+        <div class="block-element">
+          <div class="past-title">
+            <div class="title">
+              <div>{{ education.schoolTitle }}</div>
+              <div>{{ education.faculty }}, {{ education.speciality }}</div>
+              <div>{{ education.level }}</div>
+            </div>
+            <div class="period">
+              {{
+                timePeriodFormatted(education.monthStart, education.monthEnd)
+              }}
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  }
 </div>
 
 <div
