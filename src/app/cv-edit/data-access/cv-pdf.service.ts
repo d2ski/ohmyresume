@@ -28,7 +28,6 @@ export class CvPdfService {
       )
       .subscribe({
         next: (response: ArrayBuffer) => {
-          console.log(response);
           const blob = new Blob([response], { type: 'application/pdf' });
           this.downloadFile(blob);
           this.#isLoading.set(false);
@@ -72,8 +71,6 @@ export class CvPdfService {
   }
 
   public download(cvHTML: string) {
-    console.log('cv-pdfSvc download', cvHTML);
-
     const htmlBase64String = Base64.encode(cvHTML);
 
     if (!this.#isLoading()) {

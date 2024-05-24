@@ -11,6 +11,20 @@
   background-color: #fff;
 }
 
+@page {
+  border-left: 44px solid #cbd5e1;
+}
+
+@media print {
+  .tpl-minimal {
+    border: none;
+  }
+}
+
+.tpl-minimal .page-break {
+  page-break-before: always;
+}
+
 .tpl-minimal.template-content-wrapper {
   height: 0;
   padding: 0;

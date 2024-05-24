@@ -20,7 +20,6 @@ export class CvService {
 
   public updateCv(cv: Resume) {
     this.#cv.set(cv);
-    console.log('Updated CV', this.cv());
   }
 
   public updatePagesCount(count: number) {

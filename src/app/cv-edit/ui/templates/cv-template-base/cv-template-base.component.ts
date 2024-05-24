@@ -86,33 +86,14 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
 
     let currentPageHeight = 0;
 
-    console.log(
-      'Container height',
-      this.templatePageView.nativeElement.clientHeight
-    );
-    console.log('cvBlocks', this.cvBlocks);
-
     this.cvBlocks?.forEach((block) => {
       const blockHeight = block.nativeElement.clientHeight;
-
-      console.log('blockHeight', blockHeight, block);
-      console.log('currentPageHeight', currentPageHeight);
-      console.log(
-        'blockHeight + currentPageHeight',
-        blockHeight + currentPageHeight
-      );
-      console.log(
-        'clientHeight',
-        this.templatePageView.nativeElement.clientHeight - 72
-      );
-      console.log('-----');
 
       if (
         blockHeight + currentPageHeight >
         this.templatePageView.nativeElement.clientHeight - 72
       ) {
-        console.log('new page');
-        pageContent = this.createNewPageContent();
+        pageContent = this.createNewPageContent(true);
         currentPageHeight = 0;
         this.pages.push(pageContent);
       }
@@ -122,6 +103,8 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     });
 
     this.cvService.updatePagesCount(this.pages.length);
+
+    this.updateCvHTML();
   }
 
   private renderPageView(): void {
@@ -130,15 +113,21 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     this.templatePageView.nativeElement.appendChild(this.pages[pageIndex]);
   }
 
-  private createNewPageContent(): HTMLDivElement {
+  private createNewPageContent(withPageBreak = false): HTMLDivElement {
     const pageContent = document.createElement('div');
     pageContent.classList.add('page-content');
+
+    if (withPageBreak) {
+      const pageBreak = document.createElement('div');
+      pageBreak.classList.add('page-break');
+      pageContent.appendChild(pageBreak);
+    }
 
     return pageContent;
   }
 
   private updateCvHTML(): void {
-    const cvHTML = this.templateContentWrapper.nativeElement.innerHTML;
+    const cvHTML = this.pages.map((page) => page.innerHTML).join('');
     this.cvService.updateCvHTML(cvHTML);
   }
 
