@@ -6,6 +6,7 @@ import {
   HostListener,
   inject,
   OnInit,
+  signal,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
@@ -28,7 +29,10 @@ export class CvEditPreviewComponent implements OnInit {
   @ViewChild('container', { static: true })
   containerView!: ElementRef<HTMLElement>;
 
-  transform = 'transform: scale(1, 1);';
+  readonly #scaleFactor = signal(1);
+  transform = computed(
+    () => `transform: scale(${this.#scaleFactor()}, ${this.#scaleFactor()});`
+  );
 
   private readonly cvService = inject(CvService);
   readonly cv = this.cvService.cv;
@@ -52,6 +56,7 @@ export class CvEditPreviewComponent implements OnInit {
   cvTemplateInputs = computed(() => {
     return {
       cv: this.cv(),
+      scaleFactor: this.#scaleFactor(),
       currentPageIndex: this.currentPageIndex(),
     };
   });
@@ -66,7 +71,9 @@ export class CvEditPreviewComponent implements OnInit {
     const scaleFactor =
       (containerHeight - PAGE_DIMENSIONS.margin) / PAGE_DIMENSIONS.height;
 
-    this.transform = `transform: scale(${scaleFactor}, ${scaleFactor});`;
+    this.#scaleFactor.set(scaleFactor);
+
+    // this.transform = `transform: scale(${scaleFactor}, ${scaleFactor});`;
   }
 
   nextPage() {

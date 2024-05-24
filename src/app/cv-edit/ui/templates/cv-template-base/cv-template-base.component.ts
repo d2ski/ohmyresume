@@ -11,11 +11,15 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { maskitoTransform } from '@maskito/core';
-import { Resume } from '../../../data-access/models/resume/resume.interface';
+import {
+  Education,
+  Resume,
+} from '../../../data-access/models/resume/resume.interface';
 import { CvService } from '../../../data-access/cv.service';
 import { TuiMonthLike } from '@taiga-ui/cdk';
 import { formatTimePeriod } from '../../../utils/format-time-period';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import combineStrings from '../../../utils/combine-strings';
 
 @Component({
   selector: 'app-cv-template-base',
@@ -51,12 +55,17 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
   @Input() set currentPageIndex(index: number) {
     this._currentPageIndex = index;
   }
+  _currentPageIndex = 0;
 
   readonly #sanitizer = inject(DomSanitizer);
 
-  _currentPageIndex = 0;
+  @Input({ required: true }) scaleFactor!: number;
 
   ngAfterViewChecked(): void {
+    // setTimeout(() => {
+    //   this.updatePages();
+    //   this.renderPageView();
+    // }, 1000);
     this.updatePages();
     this.renderPageView();
   }
@@ -77,20 +86,39 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
 
     let currentPageHeight = 0;
 
+    console.log(
+      'Container height',
+      this.templatePageView.nativeElement.clientHeight
+    );
+    console.log('cvBlocks', this.cvBlocks);
+
     this.cvBlocks?.forEach((block) => {
       const blockHeight = block.nativeElement.clientHeight;
 
+      console.log('blockHeight', blockHeight, block);
+      console.log('currentPageHeight', currentPageHeight);
+      console.log(
+        'blockHeight + currentPageHeight',
+        blockHeight + currentPageHeight
+      );
+      console.log(
+        'clientHeight',
+        this.templatePageView.nativeElement.clientHeight - 72
+      );
+      console.log('-----');
+
       if (
         blockHeight + currentPageHeight >
-        this.templatePageView.nativeElement.clientHeight
+        this.templatePageView.nativeElement.clientHeight - 72
       ) {
+        console.log('new page');
         pageContent = this.createNewPageContent();
         currentPageHeight = 0;
         this.pages.push(pageContent);
       }
 
       pageContent.appendChild(block.nativeElement);
-      currentPageHeight += blockHeight;
+      currentPageHeight = currentPageHeight + blockHeight;
     });
 
     this.cvService.updatePagesCount(this.pages.length);
@@ -172,6 +200,14 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     monthEnd: TuiMonthLike | null
   ) {
     return formatTimePeriod(monthStart, monthEnd);
+  }
+
+  public educationTitleFormated(education: Education): string {
+    return combineStrings(education.schoolTitle, education.level);
+  }
+
+  public educationFormated(education: Education): string {
+    return combineStrings(education.faculty, education.speciality);
   }
 
   public descriptionFormated(descriptionHTML: string): SafeHtml {

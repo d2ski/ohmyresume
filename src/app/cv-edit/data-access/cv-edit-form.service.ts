@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { mockCv } from './resume.mock';
 
 @Injectable()
 export class CvEditFormService {
@@ -17,11 +18,18 @@ export class CvEditFormService {
       email: ['test@test.ru'],
       phone: ['+79112342423'],
     }),
-    experience: this.fb.array<FormGroup>([]),
-    education: this.fb.array<FormGroup>([]),
-    skills: this.fb.array<FormGroup>([]),
-    languages: this.fb.array<FormGroup>([]),
-    about: [''],
+    experience: this.fb.array<FormGroup>([
+      this.fb.group(mockCv.experience[0]),
+      this.fb.group(mockCv.experience[1]),
+    ]),
+    education: this.fb.array<FormGroup>([this.fb.group(mockCv.education[0])]),
+    skills: this.fb.array<FormGroup>([
+      ...mockCv.skills.map((skill) => this.fb.group(skill)),
+    ]),
+    languages: this.fb.array<FormGroup>([
+      ...mockCv.languages.map((skill) => this.fb.group(skill)),
+    ]),
+    about: ['<p>Начинающий web-программист с опытом бизнес-аналитика.</p>'],
   });
 
   addExperience(): void {

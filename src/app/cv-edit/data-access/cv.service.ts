@@ -35,8 +35,14 @@ export class CvService {
     this.#currentPageIndex.set(index);
   }
 
+  private clearCvHTML(html: string): string {
+    return html
+      .replace(/ng-star-inserted/g, '')
+      .replace(/<!--container-->/g, '');
+  }
+
   public updateCvHTML(html: string) {
-    const htmlClear = html.replace('ng-star-inserted', '');
+    const htmlClear = this.clearCvHTML(html);
     this.#cvHTML.set(`<div class="tpl-minimal">${htmlClear}</div>`);
   }
 

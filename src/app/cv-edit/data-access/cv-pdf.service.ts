@@ -72,6 +72,8 @@ export class CvPdfService {
   }
 
   public download(cvHTML: string) {
+    console.log('cv-pdfSvc download', cvHTML);
+
     const htmlBase64String = Base64.encode(cvHTML);
 
     if (!this.#isLoading()) {

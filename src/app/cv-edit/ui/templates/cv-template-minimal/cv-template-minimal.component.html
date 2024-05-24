@@ -1,22 +1,24 @@
-<div #templateContentWrapper class="template-content-wrapper">
-  <!-- Personal info -->
+<div #templateContentWrapper class="tpl-minimal template-content-wrapper">
+  <!-- Personal -->
   <div #cvBlock class="header">
-    <div class="personal">
-      <div class="data">
-        <div class="name">{{ cvData?.firstName }} {{ cvData?.lastName }}</div>
-        <div class="job-title">{{ cvData?.title }}</div>
-        <div class="details">
-          @if (cvData?.city) {
-          <span class="city">
+    <div class="header__content">
+      <div class="header__personal">
+        <div class="header__name">
+          {{ cvData?.firstName }} {{ cvData?.lastName }}
+        </div>
+        <div class="header__job">{{ cvData?.title }}</div>
+        <div class="header__details">
+          @if (cvData?.contacts?.phone) {
+          <span class="header__phone">
             <img
               class="icon"
-              src="https://img.icons8.com/ios-filled/50/marker.png"
-              alt="marker"
+              src="https://img.icons8.com/ios-filled/50/phone.png"
+              alt="phone"
             />
-            {{ cvData?.city }}
+            {{ phoneFormatted }}
           </span>
           } @if (ageFormatted) {
-          <span class="age">
+          <span class="header__age">
             <img
               class="icon"
               src="https://img.icons8.com/ios-filled/50/information.png"
@@ -26,8 +28,29 @@
           </span>
           }
         </div>
+        <div class="header__contacts">
+          @if (cvData?.contacts?.email) {
+          <span class="header__email">
+            <img
+              class="icon"
+              src="https://img.icons8.com/ios-filled/50/email.png"
+              alt="email"
+            />
+            {{ cvData?.contacts?.email }}
+          </span>
+          } @if (cvData?.city) {
+          <span class="header__city">
+            <img
+              class="icon"
+              src="https://img.icons8.com/ios-filled/50/marker.png"
+              alt="marker"
+            />
+            {{ cvData?.city }}
+          </span>
+          }
+        </div>
       </div>
-      <div class="photo">
+      <div class="header__photo">
         @if (cvData?.photo) {
         <img [src]="cvData?.photo" alt="" />
         }
@@ -35,154 +58,109 @@
     </div>
   </div>
 
-  <!-- Contacts -->
-  <div #cvBlock class="cv-block">
-    <div class="contacts">
-      <div class="block-header">Контакты</div>
-      <div class="break"></div>
-      <div class="block-content">
-        @if (cvData?.contacts?.email) {
-        <div class="email">
-          <img
-            class="icon"
-            src="https://img.icons8.com/ios-filled/50/email.png"
-            alt="email"
-          />
-          {{ cvData?.contacts?.email }}
-        </div>
-        } @if (cvData?.contacts?.phone) {
-        <div class="phone">
-          <img
-            class="icon"
-            src="https://img.icons8.com/ios-filled/50/phone.png"
-            alt="phone"
-          />
-          {{ phoneFormatted }}
-        </div>
-        }
-      </div>
-    </div>
-  </div>
-
   <!-- Experience -->
   @if (cvData?.experience?.length) {
-  <div #cvBlock class="cv-block">
-    <div class="experience">
-      <div class="block-header">Опыт работы</div>
-      <div class="break"></div>
-      <div class="block-content">
-        @for (experience of cvData?.experience; track $index) {
-        <div class="block-element">
-          <div class="past-title">
-            <div class="title">
-              <div>{{ experience.employer }}</div>
-              <div>{{ experience.jobTitle }}</div>
-            </div>
-            <div class="period">
-              {{
-                timePeriodFormatted(experience.monthStart, experience.monthEnd)
-              }}
-            </div>
-          </div>
-          <div
-            class="past-description"
-            [innerHTML]="experience.description"
-          ></div>
-        </div>
-        }
+  <div #cvBlock class="block-title">
+    <div class="block-title__title">Опыт работы</div>
+    <div class="block-title__break"></div>
+  </div>
+  @for (experience of cvData?.experience; track $index) {
+  <div #cvBlock class="block-header">
+    <div class="block-header__title">
+      <div class="post-title">{{ experience.employer }}</div>
+      <div class="post-date">
+        {{ timePeriodFormatted(experience.monthStart, experience.monthEnd) }}
       </div>
     </div>
+    <div class="block-header__subtitle">
+      <div>{{ experience.jobTitle }}</div>
+    </div>
   </div>
-  }
+  <div
+    #cvBlock
+    class="block-content"
+    [innerHTML]="experience.description"
+  ></div>
+  } }
 
   <!-- Education -->
   @if (cvData?.education?.length) {
-  <div #cvBlock class="cv-block">
-    <div class="education">
-      <div class="block-header">Образование</div>
-      <div class="break"></div>
-      <div class="block-content">
-        @for (education of cvData?.education; track $index) {
-        <div class="block-element">
-          <div class="past-title">
-            <div class="title">
-              <div>{{ education.schoolTitle }}</div>
-              <div>{{ education.faculty }}, {{ education.speciality }}</div>
-              <div>{{ education.level }}</div>
-            </div>
-            <div class="period">
-              {{
-                timePeriodFormatted(education.monthStart, education.monthEnd)
-              }}
-            </div>
-          </div>
-        </div>
-        }
+  <div #cvBlock class="block-title">
+    <div class="block-title__title">Образование</div>
+    <div class="block-title__break"></div>
+  </div>
+
+  @for (education of cvData?.education; track $index) {
+  <div #cvBlock class="block-header">
+    <div class="block-header__title">
+      <div class="post-title">{{ educationTitleFormated(education) }}</div>
+      <div class="post-date">
+        {{ timePeriodFormatted(education.monthStart, education.monthEnd) }}
       </div>
     </div>
+    <div class="block-header__subtitle">
+      <div>{{ educationFormated(education) }}</div>
+    </div>
   </div>
-  }
+  } }
 
   <!-- Skills -->
   @if (cvData?.skills?.length) {
-  <div #cvBlock class="cv-block">
-    <div class="skills">
-      <div class="block-header">Навыки</div>
-      <div class="break"></div>
-      <div class="block-content">
-        @for (skill of cvData?.skills; track $index) { @if (skill.skillTitle) {
+  <div #cvBlock class="block-title">
+    <div class="block-title__title">Навыки</div>
+    <div class="block-title__break"></div>
+  </div>
 
-        <div class="skill">
-          {{ skill.skillTitle }}
-        </div>
-        } }
+  <div #cvBlock class="skills-block">
+    @for (skill of cvData?.skills; track $index) { @if (skill.skillTitle) {
+    <div class="skills-block__wrapper">
+      <div class="skills-block__skill">
+        {{ skill.skillTitle }}
       </div>
     </div>
+
+    } }
   </div>
   }
 
   <!-- Languages -->
   @if (cvData?.languages?.length) {
-  <div #cvBlock class="cv-block">
-    <div class="skills">
-      <div class="block-header">Иностранные языки</div>
-      <div class="break"></div>
-      <div class="block-content">
-        @for (language of cvData?.languages; track $index) { @if
-        (language.langTitle && language.level) {
-        <div class="skill">
-          <div class="language-title">
-            {{ language.langTitle }}
-          </div>
-          <div class="language-level">
-            {{ language.level.label }}
-          </div>
+  <div #cvBlock class="block-title">
+    <div class="block-title__title">Иностранные языки</div>
+    <div class="block-title__break"></div>
+  </div>
+
+  <div #cvBlock class="skills-block">
+    @for (language of cvData?.languages; track $index) { @if (language.langTitle
+    && language.level) {
+    <div class="skills-block__wrapper">
+      <div class="skills-block__skill">
+        <div>
+          {{ language.langTitle }}
         </div>
-        } }
+        <div class="skills-block__lang-level">
+          {{ language.level.label }}
+        </div>
       </div>
     </div>
+    } }
   </div>
   }
 
   <!-- About -->
   @if (cvData?.about) {
-  <div #cvBlock class="cv-block">
-    <div class="about">
-      <div class="block-header">О себе</div>
-      <div class="break"></div>
-      <div class="block-content">
-        <div
-          [innerHTML]="descriptionFormated(cvData!.about!)"
-          class="about-description"
-        ></div>
-      </div>
-    </div>
+  <div #cvBlock class="block-title">
+    <div class="block-title__title">О себе</div>
+    <div class="block-title__break"></div>
   </div>
+
+  <div #cvBlock class="about-block" [innerHTML]="cvData?.about"></div>
   }
 </div>
 
+<!-- Paged View -->
 <div
   #templatePageView
   [style]="templatePageViewStyle"
-  class="tpl-minimal"
+  class="tpl-minimal paged-view"
 ></div>

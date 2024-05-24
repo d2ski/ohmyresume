@@ -11,7 +11,7 @@ type Experience = {
   order: number;
 };
 
-type Education = {
+export type Education = {
   schoolTitle: string | null;
   level: string | null;
   faculty: string | null;
