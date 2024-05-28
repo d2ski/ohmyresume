@@ -4,7 +4,7 @@
   align-items: center;
   background-color: var(--tui-base-06);
   overflow: none;
-  height: calc(100% - 2rem);
+  height: calc(100% - 4rem);
 
   .page {
     width: 100%;
@@ -24,17 +24,25 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 0 0.25rem;
 
   .page-switch {
     display: flex;
+    justify-content: center;
     align-items: center;
-    column-gap: 8px;
     font-size: 1rem;
     line-height: 1;
     color: var(--tui-text-01-night);
 
-    span {
+    .page-switch__pages {
       background-color: transparent;
+      text-align: center;
+      margin: 0 8px;
+      width: 36px;
     }
   }
+}
+
+.controls-right {
+  justify-content: right;
 }
