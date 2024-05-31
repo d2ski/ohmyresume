@@ -30,6 +30,14 @@ export class CvService {
     };
   });
 
+  readonly #densityStyleCSS = computed<string>(() => {
+    const densityStyle = this.densityStyle();
+
+    return Object.entries(densityStyle)
+      .map(([key, value]) => `${key}:${value};`)
+      .join('');
+  });
+
   public updateCv(cv: Resume) {
     this.#cv.set(cv);
   }
@@ -58,7 +66,11 @@ export class CvService {
 
   public updateCvHTML(html: string) {
     const htmlClear = this.clearCvHTML(html);
-    this.#cvHTML.set(`<div class="tpl-minimal">${htmlClear}</div>`);
+    const style = this.#densityStyleCSS();
+
+    this.#cvHTML.set(
+      `<div class="tpl-minimal" style="${style}">${htmlClear}</div>`
+    );
   }
 
   public downloadPDF() {
