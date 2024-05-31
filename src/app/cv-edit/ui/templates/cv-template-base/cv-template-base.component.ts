@@ -20,6 +20,7 @@ import { TuiMonthLike } from '@taiga-ui/cdk';
 import { formatTimePeriod } from '../../../utils/format-time-period';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import combineStrings from '../../../utils/combine-strings';
+import { DensityStyle } from '../../../data-access/models/density-style';
 
 @Component({
   selector: 'app-cv-template-base',
@@ -62,15 +63,7 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
 
   @Input({ required: true }) scaleFactor!: number;
 
-  @Input({ required: true }) set density(value: number) {
-    const blockSpacing = value;
-
-    this.densityStyle = {
-      '--block-spacing': `${blockSpacing}em`,
-    };
-  }
-
-  densityStyle: { '--block-spacing'?: string } = {};
+  @Input({ required: true }) densityStyle!: DensityStyle;
 
   ngAfterViewChecked(): void {
     // setTimeout(() => {

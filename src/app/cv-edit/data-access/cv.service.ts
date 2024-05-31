@@ -1,6 +1,7 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Resume } from './models/resume/resume.interface';
 import { CvPdfService } from './cv-pdf.service';
+import { DensityStyle } from './models/density-style';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,14 @@ export class CvService {
 
   readonly #density = signal(2);
   readonly density = this.#density.asReadonly();
+
+  readonly densityStyle = computed<DensityStyle>(() => {
+    const blockSpacing = this.#density();
+
+    return {
+      '--block-spacing': `${blockSpacing}em`,
+    };
+  });
 
   public updateCv(cv: Resume) {
     this.#cv.set(cv);
