@@ -1,4 +1,8 @@
-<div #templateContentWrapper class="tpl-minimal template-content-wrapper">
+<div
+  #templateContentWrapper
+  class="tpl-minimal template-content-wrapper"
+  [style]="densityStyle"
+>
   <!-- Personal -->
   <div #cvBlock class="header">
     <div class="header__content">
@@ -162,5 +166,6 @@
 <div
   #templatePageView
   [style]="templatePageViewStyle"
+  [style]="densityStyle"
   class="tpl-minimal paged-view"
 ></div>

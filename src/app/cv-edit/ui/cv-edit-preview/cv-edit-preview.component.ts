@@ -16,6 +16,11 @@ import { CvService } from '../../data-access/cv.service';
 import { PAGE_DIMENSIONS } from '../../utils/page-dimensions.const';
 import { CvTemplateMinimalComponent } from '../templates/cv-template-minimal/cv-template-minimal.component';
 
+enum DENSITY_LIMIT {
+  MAX = 4,
+  MIN = 1,
+}
+
 @Component({
   selector: 'app-cv-edit-preview',
   standalone: true,
@@ -39,6 +44,7 @@ export class CvEditPreviewComponent implements OnInit {
   readonly pagesCount = this.cvService.pagesCount;
   readonly currentPageIndex = this.cvService.currentPageIndex;
   readonly isPdfLoading = this.cvService.isPdfLoading;
+  readonly #density = this.cvService.density;
 
   readonly nextPageButtonDisabled = computed(
     () =>
@@ -58,6 +64,7 @@ export class CvEditPreviewComponent implements OnInit {
       cv: this.cv(),
       scaleFactor: this.#scaleFactor(),
       currentPageIndex: this.currentPageIndex(),
+      density: this.#density(),
     };
   });
 
@@ -87,6 +94,20 @@ export class CvEditPreviewComponent implements OnInit {
     const currentIndex = this.currentPageIndex();
     if (currentIndex > 0) {
       this.cvService.updateCurrentPageIndex(currentIndex - 1);
+    }
+  }
+
+  decreaseDensity() {
+    const density = this.#density();
+    if (density > DENSITY_LIMIT.MIN) {
+      this.cvService.updateDensity(density - 1);
+    }
+  }
+
+  increaseDensity() {
+    const density = this.#density();
+    if (density < DENSITY_LIMIT.MAX) {
+      this.cvService.updateDensity(density + 1);
     }
   }
 

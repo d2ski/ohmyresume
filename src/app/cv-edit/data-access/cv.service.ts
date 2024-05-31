@@ -18,6 +18,9 @@ export class CvService {
   readonly #cvPdfService = inject(CvPdfService);
   public isPdfLoading = this.#cvPdfService.isLoading;
 
+  readonly #density = signal(2);
+  readonly density = this.#density.asReadonly();
+
   public updateCv(cv: Resume) {
     this.#cv.set(cv);
   }
@@ -32,6 +35,10 @@ export class CvService {
 
   public updateCurrentPageIndex(index: number) {
     this.#currentPageIndex.set(index);
+  }
+
+  public updateDensity(density: number) {
+    this.#density.set(density);
   }
 
   private clearCvHTML(html: string): string {

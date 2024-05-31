@@ -1,4 +1,22 @@
 <div class="preview-controls controls-right">
+  <div class="density-switch">
+    <button
+      tuiIconButton
+      icon="tuiIconMinus"
+      type="button"
+      size="s"
+      appearance="primary"
+      (click)="decreaseDensity()"
+    ></button>
+    <button
+      tuiIconButton
+      icon="tuiIconPlus"
+      type="button"
+      size="s"
+      appearance="primary"
+      (click)="increaseDensity()"
+    ></button>
+  </div>
   <button
     tuiButton
     icon="tuiIconDownload"

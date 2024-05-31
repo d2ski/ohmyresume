@@ -4,6 +4,7 @@
   padding: 32px 44px;
   font-family: 'Manrope', serif;
   font-size: 16px;
+  line-height: 1.25;
   font-weight: 400;
   font-style: normal;
   border-left: 44px solid #cbd5e1;
@@ -59,7 +60,7 @@
 }
 
 .tpl-minimal .block-title {
-  padding-top: 2em;
+  padding-top: var(--block-spacing);
 }
 
 .tpl-minimal .block-title__title {

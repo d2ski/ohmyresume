@@ -31,6 +31,7 @@ import combineStrings from '../../../utils/combine-strings';
 })
 export class CvTemplateBaseComponent implements AfterViewChecked {
   private readonly cvService = inject(CvService);
+
   cvData: Resume | undefined;
 
   @Input({ required: true }) set cv(cv: Resume) {
@@ -60,6 +61,16 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
   readonly #sanitizer = inject(DomSanitizer);
 
   @Input({ required: true }) scaleFactor!: number;
+
+  @Input({ required: true }) set density(value: number) {
+    const blockSpacing = value;
+
+    this.densityStyle = {
+      '--block-spacing': `${blockSpacing}em`,
+    };
+  }
+
+  densityStyle: { '--block-spacing'?: string } = {};
 
   ngAfterViewChecked(): void {
     // setTimeout(() => {
