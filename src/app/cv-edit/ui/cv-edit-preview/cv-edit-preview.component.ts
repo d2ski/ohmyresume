@@ -17,8 +17,8 @@ import { PAGE_DIMENSIONS } from '../../utils/page-dimensions.const';
 import { CvTemplateMinimalComponent } from '../templates/cv-template-minimal/cv-template-minimal.component';
 
 enum DENSITY_LIMIT {
-  MAX = 4,
-  MIN = 1,
+  MAX = 5,
+  MIN = -5,
 }
 
 @Component({

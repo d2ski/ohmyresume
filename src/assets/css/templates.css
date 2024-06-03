@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css2?family=Manrope:wght@500;800&display=swap);
 
 .tpl-minimal {
-  padding: 32px 44px;
+  padding: var(--template-padding);
   font-family: 'Manrope', serif;
   font-size: 16px;
   line-height: 1.25;
@@ -60,7 +60,7 @@
 }
 
 .tpl-minimal .block-title {
-  padding-top: var(--block-spacing);
+  padding-top: var(--padding-1);
 }
 
 .tpl-minimal .block-title__title {
@@ -163,7 +163,7 @@
 }
 
 .tpl-minimal .block-header {
-  padding-top: 1em;
+  padding-top: var(--padding-2);
   line-height: 1.5;
   color: #737373;
 }
@@ -180,12 +180,12 @@
 }
 
 .tpl-minimal .block-content {
-  padding-top: 0.5em;
+  padding-top: var(--padding-3);
   padding-left: 1em;
 }
 
 .tpl-minimal .skills-block {
-  padding-top: 1em;
+  padding-top: var(--padding-2);
   display: flex;
   flex-wrap: wrap;
 }
@@ -208,5 +208,5 @@
 }
 
 .tpl-minimal .about-block {
-  padding-top: 1em;
+  padding-top: var(--padding-2);
 }

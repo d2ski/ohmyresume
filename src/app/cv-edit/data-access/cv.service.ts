@@ -19,14 +19,20 @@ export class CvService {
   readonly #cvPdfService = inject(CvPdfService);
   public isPdfLoading = this.#cvPdfService.isLoading;
 
-  readonly #density = signal(2);
+  readonly #density = signal(0);
   readonly density = this.#density.asReadonly();
 
   readonly densityStyle = computed<DensityStyle>(() => {
-    const blockSpacing = this.#density();
+    const density = this.#density();
+
+    const templatePadding = [32, 44].map((val) => val + 4 * density);
+    const padding = [2, 1, 0.5].map((val) => val + val * 0.125 * density);
 
     return {
-      '--block-spacing': `${blockSpacing}em`,
+      '--template-padding': `${templatePadding[0]}px ${templatePadding[1]}px`,
+      '--padding-1': `${padding[0]}em`,
+      '--padding-2': `${padding[1]}em`,
+      '--padding-3': `${padding[2]}em`,
     };
   });
 
