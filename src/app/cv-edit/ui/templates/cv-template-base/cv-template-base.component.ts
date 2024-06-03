@@ -165,7 +165,14 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
     return maskitoTransform(this.cvData?.contacts.phone, mask);
   }
 
-  get ageFormatted(): string {
+  get infoFormatted() {
+    const age = this.getAgeFormatted();
+    const city = this.cvData?.city || '';
+
+    return combineStrings(`${city}`, age);
+  }
+
+  private getAgeFormatted(): string {
     if (!this.cvData?.age) {
       return '';
     }

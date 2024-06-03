@@ -12,45 +12,33 @@
         </div>
         <div class="header__job">{{ cvData?.title }}</div>
         <div class="header__details">
-          @if (cvData?.contacts?.phone) {
-          <span class="header__phone">
+          @if (infoFormatted) {
+          <div class="header__age">
+            <img
+              class="icon"
+              src="https://img.icons8.com/ios-filled/50/information.png"
+              alt="info"
+            />
+            {{ infoFormatted }}
+          </div>
+          } @if (cvData?.contacts?.phone) {
+          <div class="header__phone">
             <img
               class="icon"
               src="https://img.icons8.com/ios-filled/50/phone.png"
               alt="phone"
             />
             {{ phoneFormatted }}
-          </span>
-          } @if (ageFormatted) {
-          <span class="header__age">
-            <img
-              class="icon"
-              src="https://img.icons8.com/ios-filled/50/information.png"
-              alt="info"
-            />
-            Возраст: {{ ageFormatted }}
-          </span>
-          }
-        </div>
-        <div class="header__contacts">
-          @if (cvData?.contacts?.email) {
-          <span class="header__email">
+          </div>
+          } @if (cvData?.contacts?.email) {
+          <div class="header__email">
             <img
               class="icon"
               src="https://img.icons8.com/ios-filled/50/email.png"
               alt="email"
             />
             {{ cvData?.contacts?.email }}
-          </span>
-          } @if (cvData?.city) {
-          <span class="header__city">
-            <img
-              class="icon"
-              src="https://img.icons8.com/ios-filled/50/marker.png"
-              alt="marker"
-            />
-            {{ cvData?.city }}
-          </span>
+          </div>
           }
         </div>
       </div>

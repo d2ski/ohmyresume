@@ -122,7 +122,7 @@
 }
 
 .tpl-minimal .header__personal {
-  flex: 0.7;
+  flex: 1;
 }
 
 .tpl-minimal .header__name {
@@ -137,18 +137,11 @@
   font-weight: 500;
 }
 
-.tpl-minimal .header__details,
-.tpl-minimal .header__contacts {
-  padding-top: 0.5em;
+.tpl-minimal .header__details {
+  padding-top: 0.25em;
   font-size: 1em;
-  line-height: 1.2;
+  line-height: 1.55;
   font-weight: 400;
-  display: flex;
-}
-
-.tpl-minimal .header__details span,
-.tpl-minimal .header__contacts span {
-  flex: 1;
 }
 
 .tpl-minimal .header__photo {
