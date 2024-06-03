@@ -84,19 +84,21 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
   private updatePages() {
     this.resetContent();
     this.pages = [];
-
     let pageContent = this.createNewPageContent();
     this.pages.push(pageContent);
+
+    const { paddingTop: pagePaddingTop, paddingBottom: pagePaddingBottom } =
+      getComputedStyle(this.templatePageView.nativeElement);
+    const pageViewHeight = this.templatePageView.nativeElement.clientHeight;
+    const pageViewPadding =
+      parseFloat(pagePaddingBottom) + parseFloat(pagePaddingTop);
 
     let currentPageHeight = 0;
 
     this.cvBlocks?.forEach((block) => {
       const blockHeight = block.nativeElement.clientHeight;
 
-      if (
-        blockHeight + currentPageHeight >
-        this.templatePageView.nativeElement.clientHeight - 72
-      ) {
+      if (blockHeight + currentPageHeight > pageViewHeight - pageViewPadding) {
         pageContent = this.createNewPageContent(true);
         currentPageHeight = 0;
         this.pages.push(pageContent);
