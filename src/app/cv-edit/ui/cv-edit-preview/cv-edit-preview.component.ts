@@ -11,7 +11,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TuiButtonModule, TuiModeModule } from '@taiga-ui/core';
+import { TuiButtonModule, TuiModeModule, TuiSvgModule } from '@taiga-ui/core';
 import { CvService } from '../../data-access/cv.service';
 import { PAGE_DIMENSIONS } from '../../utils/page-dimensions.const';
 import { CvTemplateMinimalComponent } from '../templates/cv-template-minimal/cv-template-minimal.component';
@@ -24,7 +24,7 @@ enum DENSITY_LIMIT {
 @Component({
   selector: 'app-cv-edit-preview',
   standalone: true,
-  imports: [CommonModule, TuiButtonModule, TuiModeModule],
+  imports: [CommonModule, TuiButtonModule, TuiModeModule, TuiSvgModule],
   templateUrl: './cv-edit-preview.component.html',
   styleUrl: './cv-edit-preview.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

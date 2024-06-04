@@ -140,7 +140,7 @@
 .tpl-minimal .header__details {
   padding-top: 0.25em;
   font-size: 1em;
-  line-height: 1.55;
+  line-height: 1.5;
   font-weight: 400;
 }
 
@@ -184,8 +184,8 @@
 }
 
 .tpl-minimal .skills-block__wrapper {
-  padding-right: 6px;
-  padding-top: 6px;
+  padding-right: 0.375em;
+  padding-top: 0.375em;
 }
 
 .tpl-minimal .skills-block__skill {
