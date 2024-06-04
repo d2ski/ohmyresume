@@ -184,8 +184,8 @@
 }
 
 .tpl-minimal .skills-block__wrapper {
-  padding-right: 0.875em;
-  padding-top: 0.875em;
+  padding-right: 6px;
+  padding-top: 6px;
 }
 
 .tpl-minimal .skills-block__skill {
