@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
+import { TuiAlertService } from '@taiga-ui/core';
 import { Base64 } from 'js-base64';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { Base64 } from 'js-base64';
 })
 export class CvPdfService {
   readonly #http = inject(HttpClient);
+  readonly #alertService = inject(TuiAlertService);
 
   #isLoading = signal(false);
   public isLoading = this.#isLoading.asReadonly();
@@ -33,8 +35,17 @@ export class CvPdfService {
           this.#isLoading.set(false);
         },
         error: (e) => {
-          console.log(e);
           this.#isLoading.set(false);
+          this.#alertService
+            .open(
+              'В данный момент скачивание недоступно. Попробуйте ещё раз через несколько минут.',
+              {
+                label: 'Ошибка загрузки файла',
+                status: 'error',
+                autoClose: false,
+              }
+            )
+            .subscribe();
         },
       });
   }
