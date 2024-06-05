@@ -34,7 +34,7 @@ export class CvPdfService {
           this.downloadFile(blob);
           this.#isLoading.set(false);
         },
-        error: (e) => {
+        error: () => {
           this.#isLoading.set(false);
           this.#alertService
             .open(
