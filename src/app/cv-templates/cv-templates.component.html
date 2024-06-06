@@ -1,25 +1,31 @@
 <main [tuiMode]="'onDark'">
-  <section class="select-template">
+  <section class="select-template tui-space_vertical-5">
     <div class="content">
-      <h1 class="tui-text_h3">Выберите вид своего будущего резюме</h1>
-      <div class="description tui-text_body-xl tui-space_vertical-4">
-        Вы сможете изменить шаблон в дальнейшем.
+      <h1 class="main-header">Выберите вид своего резюме.</h1>
+
+      <div class="templates">
+        @for (template of selectTemplates; track $index) {
+        <div class="templates__cell">
+          <a [routerLink]="['/cv/edit']" tuiLink class="templates-card">
+            <img
+              [ngSrc]="template.preview"
+              [width]="256"
+              [height]="362"
+              [priority]="true"
+              class="templates-card__preview"
+              [alt]="template.title"
+            />
+          </a>
+        </div>
+        }
+        <div class="templates__cell">
+          <div class="templates-card">
+            <div class="templates-card__soon">
+              Скоро будут доступны ёще шаблоны
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="templates">
-      @for (template of selectTemplates; track $index) {
-
-      <a [routerLink]="['/cv/edit']" tuiLink>
-        <tui-island class="item">
-          <p class="tui-island__paragraph">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </tui-island>
-        <h2 class="tui-text_body-m">{{ template.title }}</h2>
-      </a>
-
-      }
     </div>
   </section>
 </main>

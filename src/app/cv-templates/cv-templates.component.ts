@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { TuiIslandModule } from '@taiga-ui/kit';
 import { TuiButtonModule, TuiLinkModule, TuiModeModule } from '@taiga-ui/core';
 import { RouterLink } from '@angular/router';
@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
     RouterLink,
     TuiModeModule,
     TuiLinkModule,
+    NgOptimizedImage,
   ],
   templateUrl: './cv-templates.component.html',
   styleUrl: './cv-templates.component.less',
@@ -22,10 +23,8 @@ import { RouterLink } from '@angular/router';
 export default class CvTemplatesComponent {
   selectTemplates = [
     {
-      title: 'Строгий Black',
-    },
-    {
-      title: 'Строгий Red',
+      title: 'Шаблон #1',
+      preview: 'assets/img/resume-minimalist-template.jpg',
     },
   ];
 }
