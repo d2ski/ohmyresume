@@ -1,7 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Resume } from './models/resume/resume.interface';
 import { CvPdfService } from './cv-pdf.service';
-import { DensityStyle } from './models/density-style';
+import { RootStyle } from './models/root-style';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class CvService {
   readonly #density = signal(0);
   readonly density = this.#density.asReadonly();
 
-  readonly densityStyle = computed<DensityStyle>(() => {
+  readonly rootStyle = computed<RootStyle>(() => {
     const density = this.#density();
 
     const templatePadding = [32, 44].map((val) => val + 4 * density);
@@ -33,13 +33,15 @@ export class CvService {
       '--padding-1': `${padding[0]}em`,
       '--padding-2': `${padding[1]}em`,
       '--padding-3': `${padding[2]}em`,
+      '--primary-color-1': `rgba(203, 213, 225, 1)`,
+      '--primary-color-2': `rgba(203, 213, 225, 0.3)`,
     };
   });
 
-  readonly #densityStyleCSS = computed<string>(() => {
-    const densityStyle = this.densityStyle();
+  readonly #rootStyleCSS = computed<string>(() => {
+    const rootStyle = this.rootStyle();
 
-    return Object.entries(densityStyle)
+    return Object.entries(rootStyle)
       .map(([key, value]) => `${key}:${value};`)
       .join('');
   });
@@ -72,16 +74,13 @@ export class CvService {
 
   public updateCvHTML(html: string) {
     const htmlClear = this.clearCvHTML(html);
-    const style = this.#densityStyleCSS();
-
-    this.#cvHTML.set(
-      `<div class="tpl-minimal" style="${style}">${htmlClear}</div>`
-    );
+    this.#cvHTML.set(`<div class="tpl-minimal">${htmlClear}</div>`);
   }
 
   public downloadPDF() {
     if (this.#cvHTML()) {
-      this.#cvPdfService.download(this.#cvHTML());
+      const rootCSS = this.#rootStyleCSS();
+      this.#cvPdfService.download(this.#cvHTML(), rootCSS);
     }
   }
 }

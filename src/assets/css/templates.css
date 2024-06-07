@@ -7,13 +7,17 @@
   line-height: 1.25;
   font-weight: 400;
   font-style: normal;
-  border-left: 44px solid #cbd5e1;
+  border-color: var(--primary-color-1);
+  border-style: solid;
+  border-width: 0 0 0 44px;
   height: 100%;
   background-color: #fff;
 }
 
 @page {
-  border-left: 44px solid #cbd5e1;
+  border-color: var(--primary-color-1);
+  border-style: solid;
+  border-width: 0 0 0 44px;
 }
 
 @media print {
@@ -189,7 +193,7 @@
 }
 
 .tpl-minimal .skills-block__skill {
-  background-color: #f1f5f9;
+  background-color: var(--primary-color-2);
   padding: 4px 12px;
   border-radius: 4px;
   text-align: center;

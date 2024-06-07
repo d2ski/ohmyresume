@@ -13,13 +13,14 @@ export class CvPdfService {
   #isLoading = signal(false);
   public isLoading = this.#isLoading.asReadonly();
 
-  private processFile(htmlBase64String: string) {
+  private processFile(htmlBase64String: string, rootCSS: string) {
     this.#isLoading.set(true);
     this.#http
       .post(
         'http://127.0.0.1:8000/pdfs',
         {
           htmlBase64String,
+          rootCSS,
         },
         {
           responseType: 'arraybuffer',
@@ -81,11 +82,11 @@ export class CvPdfService {
     }, revokeTime);
   }
 
-  public download(cvHTML: string) {
+  public download(cvHTML: string, rootCSS: string) {
     const htmlBase64String = Base64.encode(cvHTML);
 
     if (!this.#isLoading()) {
-      this.processFile(htmlBase64String);
+      this.processFile(htmlBase64String, rootCSS);
     }
   }
 }

@@ -45,7 +45,7 @@ export class CvEditPreviewComponent implements OnInit {
   readonly currentPageIndex = this.cvService.currentPageIndex;
   readonly isPdfLoading = this.cvService.isPdfLoading;
   readonly #density = this.cvService.density;
-  readonly #densityStyle = this.cvService.densityStyle;
+  readonly #rootStyle = this.cvService.rootStyle;
 
   readonly nextPageButtonDisabled = computed(
     () =>
@@ -65,7 +65,7 @@ export class CvEditPreviewComponent implements OnInit {
       cv: this.cv(),
       scaleFactor: this.#scaleFactor(),
       currentPageIndex: this.currentPageIndex(),
-      densityStyle: this.#densityStyle(),
+      rootStyle: this.#rootStyle(),
     };
   });
 
