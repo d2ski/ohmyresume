@@ -15,6 +15,7 @@ import { TuiButtonModule, TuiModeModule, TuiSvgModule } from '@taiga-ui/core';
 import { CvService } from '../../data-access/cv.service';
 import { PAGE_DIMENSIONS } from '../../utils/page-dimensions.const';
 import { CvTemplateMinimalComponent } from '../templates/cv-template-minimal/cv-template-minimal.component';
+import { TemplateColor } from '../../data-access/models/template-color';
 
 enum DENSITY_LIMIT {
   MAX = 5,
@@ -45,6 +46,8 @@ export class CvEditPreviewComponent implements OnInit {
   readonly currentPageIndex = this.cvService.currentPageIndex;
   readonly isPdfLoading = this.cvService.isPdfLoading;
   readonly #density = this.cvService.density;
+  readonly templateColors = this.cvService.templateColors;
+  readonly currentTepmplateColor = this.cvService.currentTeplateColor;
   readonly #rootStyle = this.cvService.rootStyle;
 
   readonly nextPageButtonDisabled = computed(
@@ -114,5 +117,9 @@ export class CvEditPreviewComponent implements OnInit {
 
   downloadPDF() {
     this.cvService.downloadPDF();
+  }
+
+  public setCurrentTemplateColor(color: TemplateColor) {
+    this.cvService.setCurrentTeplateColor(color);
   }
 }

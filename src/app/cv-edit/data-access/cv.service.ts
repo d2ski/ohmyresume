@@ -1,7 +1,8 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { Resume } from './models/resume/resume.interface';
 import { CvPdfService } from './cv-pdf.service';
 import { RootStyle } from './models/root-style';
+import { TemplateColor } from './models/template-color';
 
 @Injectable({
   providedIn: 'root',
@@ -22,19 +23,28 @@ export class CvService {
   readonly #density = signal(0);
   readonly density = this.#density.asReadonly();
 
+  readonly #templateColors = signal<TemplateColor[]>([]);
+  public templateColors = this.#templateColors.asReadonly();
+  readonly #currentTemplateColor = signal<TemplateColor | undefined>(undefined);
+  readonly currentTeplateColor = this.#currentTemplateColor.asReadonly();
+
   readonly rootStyle = computed<RootStyle>(() => {
     const density = this.#density();
 
     const templatePadding = [32, 44].map((val) => val + 4 * density);
     const padding = [2, 1, 0.5].map((val) => val + val * 0.125 * density);
 
+    const primaryColor =
+      this.#currentTemplateColor() || 'rgba(255, 255, 255, 1)';
+    const primaryColorLight = primaryColor.replace(', 1)', ', 0.3)');
+
     return {
       '--template-padding': `${templatePadding[0]}px ${templatePadding[1]}px`,
       '--padding-1': `${padding[0]}em`,
       '--padding-2': `${padding[1]}em`,
       '--padding-3': `${padding[2]}em`,
-      '--primary-color-1': `rgba(203, 213, 225, 1)`,
-      '--primary-color-2': `rgba(203, 213, 225, 0.3)`,
+      '--primary-color-1': primaryColor,
+      '--primary-color-2': primaryColorLight,
     };
   });
 
@@ -45,6 +55,16 @@ export class CvService {
       .map(([key, value]) => `${key}:${value};`)
       .join('');
   });
+
+  constructor() {
+    effect(
+      () => {
+        const initColor = this.#templateColors()[0];
+        this.#currentTemplateColor.set(initColor);
+      },
+      { allowSignalWrites: true }
+    );
+  }
 
   public updateCv(cv: Resume) {
     this.#cv.set(cv);
@@ -82,5 +102,13 @@ export class CvService {
       const rootCSS = this.#rootStyleCSS();
       this.#cvPdfService.download(this.#cvHTML(), rootCSS);
     }
+  }
+
+  public setTemplateColors(colors: TemplateColor[]) {
+    this.#templateColors.set(colors);
+  }
+
+  public setCurrentTeplateColor(color: TemplateColor) {
+    this.#currentTemplateColor.set(color);
   }
 }

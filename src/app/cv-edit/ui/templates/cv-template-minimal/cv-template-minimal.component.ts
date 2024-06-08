@@ -19,5 +19,10 @@ import { TuiFormatPhonePipeModule } from '@taiga-ui/core';
 export class CvTemplateMinimalComponent extends CvTemplateBaseComponent {
   constructor() {
     super();
+    this.colors = [
+      'rgba(203, 213, 225, 1)',
+      'rgba(21, 21, 21, 1)',
+      'rgba(82, 110, 211, 1)',
+    ];
   }
 }

@@ -18,6 +18,20 @@
       (click)="increaseDensity()"
     ></button>
   </div>
+  <div class="color-switch">
+    @for (color of templateColors(); track $index) {
+    <span [style]="'--switch-color:' + color + ';'">
+      <button
+        tuiIconButton
+        [icon]="currentTepmplateColor() === color ? 'tuiIconCheck' : ''"
+        type="button"
+        size="xs"
+        appearance="color-switch-button"
+        (click)="setCurrentTemplateColor(color)"
+      ></button
+    ></span>
+    }
+  </div>
   <button
     tuiButton
     icon="tuiIconDownload"

@@ -5,6 +5,7 @@ import {
   ElementRef,
   inject,
   Input,
+  OnInit,
   QueryList,
   ViewChild,
   ViewChildren,
@@ -21,6 +22,7 @@ import { formatTimePeriod } from '../../../utils/format-time-period';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import combineStrings from '../../../utils/combine-strings';
 import { RootStyle } from '../../../data-access/models/root-style';
+import { TemplateColor } from '../../../data-access/models/template-color';
 
 @Component({
   selector: 'app-cv-template-base',
@@ -30,10 +32,12 @@ import { RootStyle } from '../../../data-access/models/root-style';
   styleUrl: './cv-template-base.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CvTemplateBaseComponent implements AfterViewChecked {
+export class CvTemplateBaseComponent implements OnInit, AfterViewChecked {
   private readonly cvService = inject(CvService);
 
   cvData: Resume | undefined;
+
+  colors: TemplateColor[] = [];
 
   @Input({ required: true }) set cv(cv: Resume) {
     this.cvData = cv;
@@ -64,6 +68,10 @@ export class CvTemplateBaseComponent implements AfterViewChecked {
   @Input({ required: true }) scaleFactor!: number;
 
   @Input({ required: true }) rootStyle!: RootStyle;
+
+  ngOnInit(): void {
+    this.cvService.setTemplateColors(this.colors);
+  }
 
   ngAfterViewChecked(): void {
     // setTimeout(() => {
