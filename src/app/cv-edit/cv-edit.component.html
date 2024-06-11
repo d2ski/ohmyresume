@@ -1,8 +1,35 @@
-<main class="editor">
+<main
+  class="editor"
+  appTopBottomReached
+  (isReached)="expandMobileControl()"
+  (isMissed)="shrinkMobileControl()"
+>
   <div class="form">
     <app-cv-edit-form [cvForm]="cvForm" />
   </div>
-  <div class="preview">
+
+  <div class="preview" [class.active]="showMobilePreview">
     <app-cv-edit-preview />
+  </div>
+  <div class="mobile-control">
+    @if (isMobileControlExpanded ) {
+    <button
+      tuiButton
+      [icon]="mobileControlButton.icon"
+      type="button"
+      size="l"
+      appearance="primary"
+      (click)="tooglePreview()"
+    >
+      {{ mobileControlButton.label }}</button
+    >} @else {
+    <button
+      tuiIconButton
+      [icon]="mobileControlButton.icon"
+      type="button"
+      size="l"
+      appearance="primary"
+    ></button>
+    }
   </div>
 </main>

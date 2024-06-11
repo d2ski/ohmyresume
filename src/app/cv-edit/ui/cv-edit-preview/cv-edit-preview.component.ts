@@ -35,6 +35,9 @@ export class CvEditPreviewComponent implements OnInit {
   @ViewChild('container', { static: true })
   containerView!: ElementRef<HTMLElement>;
 
+  @ViewChild('page', { static: true })
+  pageView!: ElementRef<HTMLElement>;
+
   readonly #scaleFactor = signal(1);
   transform = computed(
     () => `transform: scale(${this.#scaleFactor()}, ${this.#scaleFactor()});`
@@ -66,7 +69,6 @@ export class CvEditPreviewComponent implements OnInit {
   cvTemplateInputs = computed(() => {
     return {
       cv: this.cv(),
-      scaleFactor: this.#scaleFactor(),
       currentPageIndex: this.currentPageIndex(),
       rootStyle: this.#rootStyle(),
     };
@@ -78,13 +80,19 @@ export class CvEditPreviewComponent implements OnInit {
 
   @HostListener('window:resize')
   scaleContainer(): void {
+    const containerWidth = this.containerView.nativeElement.offsetWidth;
     const containerHeight = this.containerView.nativeElement.offsetHeight;
-    const scaleFactor =
-      (containerHeight - PAGE_DIMENSIONS.margin) / PAGE_DIMENSIONS.height;
+
+    console.log('containerHeight', containerHeight);
+
+    const maxScaleFactor = containerHeight > 700 ? 0.67 : 0.5;
+
+    const scaleFactor = Math.min(
+      containerWidth / PAGE_DIMENSIONS.width,
+      maxScaleFactor
+    );
 
     this.#scaleFactor.set(scaleFactor);
-
-    // this.transform = `transform: scale(${scaleFactor}, ${scaleFactor});`;
   }
 
   nextPage() {

@@ -46,10 +46,9 @@
   </button>
 </div>
 <div #container class="preview-container">
-  <div class="page" [style]="transform()">
+  <div #page class="page" [style]="transform()">
     @if (cv()) {
     <ng-container
-      #template
       *ngComponentOutlet="cvTemplate; inputs: cvTemplateInputs()"
     ></ng-container>
     }

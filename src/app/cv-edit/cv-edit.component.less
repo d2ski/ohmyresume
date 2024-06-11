@@ -1,4 +1,9 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
 .editor {
+  height: 100%;
+  overflow: auto;
+
   .form,
   .preview {
     padding: 0.5rem 1rem;
@@ -7,6 +12,10 @@
 
   .form {
     background-color: var(--tui-base-01);
+
+    @media (max-width: 1200px) {
+      width: 100%;
+    }
   }
 
   .preview {
@@ -15,5 +24,31 @@
     top: 0;
     right: 0;
     bottom: 0;
+
+    @media (max-width: 1200px) {
+      opacity: 0;
+      right: -100%;
+
+      &.active {
+        opacity: 1;
+        width: 100%;
+        inset: 0;
+        z-index: 99;
+      }
+    }
+  }
+
+  .mobile-control {
+    display: none;
+    padding: 1rem;
+
+    @media (max-width: 1200px) {
+      display: block;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+
+      z-index: 199;
+    }
   }
 }

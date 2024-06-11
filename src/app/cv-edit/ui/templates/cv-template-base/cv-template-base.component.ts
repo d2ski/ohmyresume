@@ -65,7 +65,7 @@ export class CvTemplateBaseComponent implements OnInit, AfterViewChecked {
 
   readonly #sanitizer = inject(DomSanitizer);
 
-  @Input({ required: true }) scaleFactor!: number;
+  //   @Input({ required: true }) scaleFactor!: number;
 
   @Input({ required: true }) rootStyle!: RootStyle;
 

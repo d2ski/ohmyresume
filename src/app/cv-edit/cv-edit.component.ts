@@ -12,6 +12,24 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Resume } from './data-access/models/resume/resume.interface';
 import { CvEditFormService } from './data-access/cv-edit-form.service';
 import { CvService } from './data-access/cv.service';
+import { TuiButtonModule, TuiScrollbarModule } from '@taiga-ui/core';
+import { TopBottomReachedDirective } from './top-bottom-reached.directive';
+
+const MOBILE_CONTROL_BUTTONS = {
+  preview: {
+    icon: 'tuiIconEdit3Large',
+    label: 'Редактор',
+  },
+  edit: {
+    icon: 'tuiIconFileTextLarge',
+    label: 'Просмотр',
+  },
+} as const;
+
+type MobileControlButton = {
+  icon: string;
+  label: string;
+};
 
 @Component({
   selector: 'app-cv-edit',
@@ -21,6 +39,9 @@ import { CvService } from './data-access/cv.service';
     CvEditFormComponent,
     CvEditPreviewComponent,
     ReactiveFormsModule,
+    TuiButtonModule,
+    TuiScrollbarModule,
+    TopBottomReachedDirective,
   ],
   templateUrl: './cv-edit.component.html',
   styleUrl: './cv-edit.component.less',
@@ -33,6 +54,10 @@ export default class CvEditComponent implements OnInit {
 
   private readonly cvService = inject(CvService);
 
+  public isMobileControlExpanded = true;
+  public showMobilePreview = false;
+  public mobileControlButton: MobileControlButton = MOBILE_CONTROL_BUTTONS.edit;
+
   ngOnInit(): void {
     this.cvForm.valueChanges
       .pipe(debounceTime(2000), distinctUntilChanged())
@@ -41,5 +66,20 @@ export default class CvEditComponent implements OnInit {
 
   private updateCv(cv: Resume) {
     this.cvService.updateCv(cv);
+  }
+
+  public shrinkMobileControl() {
+    this.isMobileControlExpanded = false;
+  }
+
+  public expandMobileControl() {
+    this.isMobileControlExpanded = true;
+  }
+
+  public tooglePreview() {
+    this.showMobilePreview = !this.showMobilePreview;
+    this.mobileControlButton = this.showMobilePreview
+      ? MOBILE_CONTROL_BUTTONS.preview
+      : MOBILE_CONTROL_BUTTONS.edit;
   }
 }
