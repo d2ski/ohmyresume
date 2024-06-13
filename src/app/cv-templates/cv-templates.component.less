@@ -1,13 +1,17 @@
 main {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100dvh;
   background-color: rgb(38, 38, 38);
   color: var(--tui-text-01-night);
 
   section {
     width: 100%;
     font-size: 0.7vw;
+
+    @media (max-width: 1200px) {
+      font-size: 1vw;
+    }
 
     .content {
       padding: 0 1rem;
@@ -18,6 +22,10 @@ main {
         line-height: 110%;
         width: 70%;
         margin-bottom: 1em;
+
+        @media (max-width: 1200px) {
+          width: 100%;
+        }
       }
     }
   }
@@ -31,6 +39,10 @@ main {
     .templates__cell {
       width: 33.3333%;
       padding: 2em;
+
+      @media (max-width: 1200px) {
+        width: 50%;
+      }
     }
 
     .templates-card {
@@ -49,7 +61,7 @@ main {
     }
 
     a.templates-card {
-      &:hover::after {
+      &::after {
         content: 'Выбрать';
         font-size: 2em;
         line-height: 1;
@@ -62,6 +74,19 @@ main {
         right: 10%;
         background-color: rgba(38, 38, 38);
         border-radius: var(--tui-radius-s);
+        opacity: 0;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+
+      @media (max-width: 1200px) {
+        &::after {
+          opacity: 1;
+          font-size: 2.5em;
+          color: var(--tui-text-01-night);
+        }
       }
     }
 
