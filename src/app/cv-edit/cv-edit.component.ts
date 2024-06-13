@@ -17,8 +17,8 @@ import { TopBottomReachedDirective } from './top-bottom-reached.directive';
 
 const MOBILE_CONTROL_BUTTONS = {
   preview: {
-    icon: 'tuiIconEdit3Large',
-    label: 'Редактор',
+    icon: 'tuiIconChevronLeftLarge',
+    label: 'Назад',
   },
   edit: {
     icon: 'tuiIconFileTextLarge',

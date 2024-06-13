@@ -4,7 +4,7 @@
   (isReached)="expandMobileControl()"
   (isMissed)="shrinkMobileControl()"
 >
-  <div class="form">
+  <div class="form" [class.hidden]="showMobilePreview">
     <app-cv-edit-form [cvForm]="cvForm" />
   </div>
 
