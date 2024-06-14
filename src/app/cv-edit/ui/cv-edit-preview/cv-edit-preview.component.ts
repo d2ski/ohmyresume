@@ -1,11 +1,11 @@
 import {
+  AfterViewChecked,
   ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
   HostListener,
   inject,
-  OnInit,
   signal,
   ViewChild,
   ViewEncapsulation,
@@ -31,7 +31,7 @@ enum DENSITY_LIMIT {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CvEditPreviewComponent implements OnInit {
+export class CvEditPreviewComponent implements AfterViewChecked {
   @ViewChild('container', { static: true })
   containerView!: ElementRef<HTMLElement>;
 
@@ -74,7 +74,7 @@ export class CvEditPreviewComponent implements OnInit {
     };
   });
 
-  ngOnInit(): void {
+  ngAfterViewChecked(): void {
     this.scaleContainer();
   }
 
@@ -83,7 +83,13 @@ export class CvEditPreviewComponent implements OnInit {
     const containerWidth = this.containerView.nativeElement.offsetWidth;
     const containerHeight = this.containerView.nativeElement.offsetHeight;
 
-    console.log('containerHeight', containerHeight);
+    console.log(
+      'containerHeight',
+      containerHeight,
+      'containerWidth',
+      containerWidth
+    );
+    console.log(this.containerView.nativeElement);
 
     const maxScaleFactor = containerHeight > 700 ? 0.67 : 0.5;
 
