@@ -17,7 +17,7 @@ export class CvPdfService {
     this.#isLoading.set(true);
     this.#http
       .post(
-        'https://weasyprint-api.onrender.com/pdfs',
+        'http://109.196.164.7:8000/pdfs',
         {
           htmlBase64String,
           rootCSS,
