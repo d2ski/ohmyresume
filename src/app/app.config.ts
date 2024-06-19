@@ -6,6 +6,8 @@ import { TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE } from '@taiga-ui/i18n';
 import { appRoutes } from './app.routes';
 import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
+import { APP_CONFIG } from './core/app-config';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +18,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: TUI_LANGUAGE,
       useValue: of(TUI_RUSSIAN_LANGUAGE),
+    },
+    {
+      provide: APP_CONFIG,
+      useValue: environment,
     },
   ],
 };

@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { TuiAlertService } from '@taiga-ui/core';
 import { Base64 } from 'js-base64';
+import { APP_CONFIG } from '../../core/app-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CvPdfService {
+  readonly #appConfig = inject(APP_CONFIG);
   readonly #http = inject(HttpClient);
   readonly #alertService = inject(TuiAlertService);
 
@@ -17,7 +19,7 @@ export class CvPdfService {
     this.#isLoading.set(true);
     this.#http
       .post(
-        'http://109.196.164.7:8000/pdfs',
+        this.#appConfig.pdfApiUrl,
         {
           htmlBase64String,
           rootCSS,
