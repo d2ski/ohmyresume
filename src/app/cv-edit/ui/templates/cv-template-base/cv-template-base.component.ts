@@ -106,15 +106,6 @@ export class CvTemplateBaseComponent implements OnInit, AfterViewChecked {
     this.cvBlocks?.forEach((block) => {
       const blockHeight = block.nativeElement.clientHeight;
 
-      //   console.log(block);
-      //   console.log('blockHeight', blockHeight);
-      //   console.log('currentPageHeight', currentPageHeight);
-      //   console.log('pageViewHeight', pageViewHeight);
-      //   console.log('pageViewPadding', pageViewPadding);
-      //   console.log(blockHeight + currentPageHeight);
-      //   console.log(pageViewHeight - pageViewPadding);
-      //   console.log('------------');
-
       if (blockHeight + currentPageHeight > pageViewHeight - pageViewPadding) {
         pageContent = this.createNewPageContent(true);
         currentPageHeight = 0;

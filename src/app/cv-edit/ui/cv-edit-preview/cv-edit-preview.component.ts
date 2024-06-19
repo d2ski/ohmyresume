@@ -82,17 +82,7 @@ export class CvEditPreviewComponent implements AfterViewChecked {
   scaleContainer(): void {
     const containerWidth = this.containerView.nativeElement.offsetWidth;
     const containerHeight = this.containerView.nativeElement.offsetHeight;
-
-    console.log(
-      'containerHeight',
-      containerHeight,
-      'containerWidth',
-      containerWidth
-    );
-    console.log(this.containerView.nativeElement);
-
     const maxScaleFactor = containerHeight > 700 ? 0.67 : 0.5;
-
     const scaleFactor = Math.min(
       containerWidth / PAGE_DIMENSIONS.width,
       maxScaleFactor
