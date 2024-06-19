@@ -7,6 +7,11 @@
 
   section {
     width: 100%;
+    font-size: 0.7vw;
+
+    @media (max-width: 1200px) {
+      font-size: 1vw;
+    }
 
     .content {
       padding: 0 1rem;
@@ -15,12 +20,6 @@
   }
 
   section.hero {
-    font-size: 0.7vw;
-
-    @media (max-width: 1200px) {
-      font-size: 1vw;
-    }
-
     .content {
       .main-header {
         font-size: 7.2em;
@@ -31,6 +30,7 @@
 
         @media (max-width: 1200px) {
           width: 100%;
+          font-size: 8em;
         }
       }
 
@@ -38,11 +38,46 @@
       .privacy-note {
         color: var(--tui-text-01-night);
         font-size: 2.2em;
-        line-height: 150%;
+        line-height: 125%;
+        margin-bottom: 0.5em;
 
         @media (max-width: 1200px) {
           font-size: 4em;
-          margin-bottom: 0.5em;
+        }
+      }
+    }
+  }
+
+  section.why {
+    .why-card {
+      font-size: 2.2em;
+      line-height: 125%;
+      border-radius: 0.75em;
+      background: linear-gradient(
+        130deg,
+        rgba(255, 255, 255, 1) 45%,
+        rgba(67, 56, 202, 1) 100%
+      );
+      color: rgb(38, 38, 38);
+      padding: 1em 1.25em 2em 1.25em;
+      margin-bottom: 7em;
+
+      @media (max-width: 1200px) {
+        font-size: 4em;
+      }
+
+      h2 {
+        font-size: 1.4em;
+        line-height: 110%;
+        font-weight: 400;
+      }
+
+      * {
+        width: 70%;
+        margin-bottom: 0.5em;
+
+        @media (max-width: 1200px) {
+          width: 100%;
         }
       }
     }
@@ -51,7 +86,7 @@
 
 .create-cv {
   padding: 1rem 1rem 4vh 1rem;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   left: 0;
