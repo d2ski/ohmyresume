@@ -18,6 +18,7 @@ import {
   TuiScrollbarModule,
 } from '@taiga-ui/core';
 import { TopBottomReachedDirective } from './top-bottom-reached.directive';
+import { RouterLink } from '@angular/router';
 
 const MOBILE_CONTROL_BUTTONS = {
   preview: {
@@ -47,6 +48,7 @@ type MobileControlButton = {
     TuiScrollbarModule,
     TopBottomReachedDirective,
     TuiLinkModule,
+    RouterLink,
   ],
   templateUrl: './cv-edit.component.html',
   styleUrl: './cv-edit.component.less',
