@@ -6,6 +6,12 @@
 >
   <div class="form" [class.hidden]="showMobilePreview">
     <app-cv-edit-form [cvForm]="cvForm" />
+
+    <div class="form-footer">
+      <a tuiLink routerLink="/" icon="tuiIconHome" iconAlign="left">
+        okresume.ru
+      </a>
+    </div>
   </div>
 
   <div class="preview" [class.active]="showMobilePreview">

@@ -12,7 +12,11 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Resume } from './data-access/models/resume/resume.interface';
 import { CvEditFormService } from './data-access/cv-edit-form.service';
 import { CvService } from './data-access/cv.service';
-import { TuiButtonModule, TuiScrollbarModule } from '@taiga-ui/core';
+import {
+  TuiButtonModule,
+  TuiLinkModule,
+  TuiScrollbarModule,
+} from '@taiga-ui/core';
 import { TopBottomReachedDirective } from './top-bottom-reached.directive';
 
 const MOBILE_CONTROL_BUTTONS = {
@@ -42,6 +46,7 @@ type MobileControlButton = {
     TuiButtonModule,
     TuiScrollbarModule,
     TopBottomReachedDirective,
+    TuiLinkModule,
   ],
   templateUrl: './cv-edit.component.html',
   styleUrl: './cv-edit.component.less',
