@@ -1,8 +1,5 @@
-export default function combineStrings(
-  firstString: string | null,
-  secondString: string | null
-): string {
-  const sep = firstString && secondString ? ', ' : '';
+export default function combineStrings(...args: (string | null)[]): string {
+  const displayStrings = args.filter((arg) => arg);
 
-  return `${firstString}${sep}${secondString}`;
+  return displayStrings.join(', ');
 }

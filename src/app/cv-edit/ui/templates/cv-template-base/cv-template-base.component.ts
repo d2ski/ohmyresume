@@ -178,8 +178,9 @@ export class CvTemplateBaseComponent implements OnInit, AfterViewChecked {
   get infoFormatted() {
     const age = this.getAgeFormatted();
     const city = this.cvData?.city || '';
+    const residency = this.cvData?.residency || '';
 
-    return combineStrings(`${city}`, age);
+    return combineStrings(city, residency, age);
   }
 
   private getAgeFormatted(): string {
