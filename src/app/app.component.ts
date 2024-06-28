@@ -41,9 +41,6 @@ export class AppComponent {
         const newPath = location.path();
         this.metrika.hit(newPath, {
           referer: prevPath,
-          callback: () => {
-            console.log('hit end');
-          },
         });
         prevPath = newPath;
       });

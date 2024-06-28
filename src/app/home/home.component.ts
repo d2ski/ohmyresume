@@ -6,6 +6,7 @@ import {
   TuiTooltipModule,
 } from '@taiga-ui/core';
 import { RouterLink } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -21,4 +22,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor(private readonly meta: Meta) {
+    this.meta.addTag({
+      name: 'description',
+      content:
+        'Онлайн сервис, который позволяет создавать резюме с помощью шаблонов и сохранять его в формате PDF',
+    });
+  }
+}
