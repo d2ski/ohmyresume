@@ -33,6 +33,7 @@
     "@tinkoff/tui-editor": "^1.25.1",
     "dompurify": "3.0.6",
     "js-base64": "^3.7.7",
+    "ng-yandex-metrika": "^17.1.2",
     "ngx-image-cropper": "^7.2.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

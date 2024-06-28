@@ -8,6 +8,7 @@ import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
 import { APP_CONFIG } from './core/app-config';
 import { environment } from '../environments/environment';
+import { MetrikaModule } from 'ng-yandex-metrika';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,5 +24,8 @@ export const appConfig: ApplicationConfig = {
       provide: APP_CONFIG,
       useValue: environment,
     },
+    importProvidersFrom(
+      MetrikaModule.forRoot([{ id: 97695010, webvisor: false }])
+    ),
   ],
 };
