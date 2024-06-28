@@ -20,7 +20,7 @@ import { filter } from 'rxjs';
   providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
 })
 export class AppComponent {
-  title = 'ohmyresume';
+  title = 'Бесплатный онлайн конструктор резюме';
 
   constructor(
     private metrika: Metrika,
